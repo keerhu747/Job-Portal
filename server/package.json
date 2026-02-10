@@ -1,3 +1,4 @@
+
 {
   "name": "client",
   "private": true,
@@ -32,3 +33,4 @@
     "vite": "^7.2.4"
   }
 }
+
