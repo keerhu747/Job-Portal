@@ -26,9 +26,11 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Profile2 from "./pages/profile2";
 import Profile3 from "./pages/profile3";
 import Home from "./pages/home";
 import Home2 from "./pages/home2";
+
 
 function App() {
   return (
@@ -37,8 +39,12 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile3" element={<Profile3 />} />
+
       <Route path="/home" element={<Home />} />
       <Route path="/home2" element={<Home2 />} />
+
+       <Route path="/profile2" element={<Profile2 />} />
+
     </Routes>
   );
 }
