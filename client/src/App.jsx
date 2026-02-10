@@ -38,6 +38,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile2" element={<Profile2 />} />
       <Route path="/profile3" element={<Profile3 />} />
+       <Route path="/profile2" element={<Profile2 />} />
     </Routes>
   );
 }
