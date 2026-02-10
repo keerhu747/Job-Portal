@@ -1,150 +1,184 @@
-import { Search, Bell, MapPin, Briefcase } from "lucide-react";
+import {
+  Bell,
+  Search,
+  MapPin,
+  Bookmark,
+  Briefcase,
+  Clock,
+  DollarSign,
+  Moon,
+} from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f4f6fb]">
-
-      {/* ===== HEADER ===== */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          
-          {/* Left */}
+    <div className="min-h-screen bg-[#f5f7fb]">
+      {/* TOP HEADER */}
+      <div className="bg-white px-8 py-4 flex justify-between items-center">
+        <div className="flex items-center gap-3">
+          <div className="w-11 h-11 bg-[#1f4ed8] rounded-lg flex items-center justify-center text-white font-bold text-lg">
+            TP
+          </div>
           <div>
-            <h2 className="text-lg font-semibold text-black">
-              Hello, Alex !
-            </h2>
-            <p className="text-sm text-gray-500 flex items-center gap-1">
-              <MapPin size={14} /> Brisbane
+            <h2 className="font-semibold text-sm">Hello, Alex !</h2>
+            <p className="text-xs text-gray-500 flex items-center gap-1">
+              <MapPin size={12} /> Brisbane
             </p>
           </div>
-
-          {/* Right */}
-          <div className="flex items-center gap-6">
-            <Bell className="text-gray-600" />
-            <img
-              src="https://i.pravatar.cc/40"
-              alt="profile"
-              className="w-9 h-9 rounded-full"
-            />
-          </div>
         </div>
 
-        {/* ===== NAV BAR ===== */}
-        <div className="bg-blue-600">
-          <div className="max-w-7xl mx-auto px-6 flex gap-8 text-white text-sm font-medium">
-            <button className="border-b-2 border-white py-3">
-              Job search
-            </button>
-            <button className="py-3 opacity-80">My Application</button>
-            <button className="py-3 opacity-80">Top companies</button>
-            <button className="py-3 opacity-80">Upgrade Premium</button>
-          </div>
+        <div className="flex items-center gap-4">
+          <Bell size={18} />
+          <img
+            src="https://i.pravatar.cc/40"
+            className="w-9 h-9 rounded-full"
+          />
         </div>
       </div>
 
-      {/* ===== MAIN CONTENT ===== */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      {/* BLUE NAVBAR */}
+      <div className="bg-[#2456e6] px-8 py-3 text-white flex gap-8 text-sm">
+        <span className="border-b-2 border-white pb-1">Job search</span>
+        <span>My Application</span>
+        <span>Top companies</span>
+        <span>Upgrade Premium</span>
+      </div>
 
-        {/* ===== SEARCH BAR ===== */}
-        <div className="bg-white p-6 rounded-xl shadow-sm">
-          <div className="grid grid-cols-4 gap-4">
-            
-            <div className="col-span-1 flex items-center border rounded px-3">
-              <Search size={18} className="text-gray-400" />
-              <input
-                type="text"
-                placeholder="Key words / role"
-                className="w-full px-2 py-2 outline-none text-sm"
-              />
-            </div>
-
-            <div className="col-span-1 flex items-center border rounded px-3">
-              <MapPin size={18} className="text-gray-400" />
-              <input
-                type="text"
-                placeholder="Location"
-                className="w-full px-2 py-2 outline-none text-sm"
-              />
-            </div>
-
-            <button className="border rounded px-4 text-sm text-gray-600">
-              Filters
-            </button>
-
-            <button className="bg-blue-600 text-white rounded px-6">
-              Find Jobs
-            </button>
-          </div>
-
-          {/* Tags */}
-          <div className="flex gap-3 mt-4 flex-wrap">
-            {["Driver , Australia", "Cooking , Australia", "Office staff , Australia"].map(
-              (item, index) => (
-                <span
-                  key={index}
-                  className="bg-gray-100 text-sm px-3 py-1 rounded"
-                >
-                  {item}
-                </span>
-              )
-            )}
-          </div>
-        </div>
-
-        {/* ===== QUICK FILTERS ===== */}
-        <div className="mt-6">
-          <h3 className="text-sm font-semibold mb-3">Quick Filters</h3>
-          <div className="flex gap-3 flex-wrap">
-            {["Nearby", "Part time", "Full time", "Daily wages", "Night shift"].map(
-              (filter, i) => (
-                <button
-                  key={i}
-                  className="border px-4 py-1 rounded text-sm bg-white"
-                >
-                  {filter}
-                </button>
-              )
-            )}
-          </div>
-        </div>
-
-        {/* ===== TOP RECOMMENDED ===== */}
-        <div className="mt-8">
-          <h3 className="text-sm font-semibold mb-4">
-            Top Recommended
-          </h3>
-
-          {/* Job Card */}
-          <div className="bg-white p-6 rounded-xl shadow-sm flex justify-between">
-            
-            {/* Left */}
-            <div>
-              <h4 className="font-semibold text-black">
-                Security Guard
-              </h4>
-              <p className="text-sm text-gray-500">Metro mall</p>
-
-              <div className="flex gap-3 mt-3 flex-wrap">
-                <span className="tag">Gold Coast</span>
-                <span className="tag">Full time</span>
-                <span className="tag">Monthly</span>
-                <span className="tag">Night shift</span>
+      {/* MAIN CONTENT */}
+      <div className="px-8 py-6 grid grid-cols-12 gap-6">
+        {/* LEFT CONTENT */}
+        <div className="col-span-9">
+          {/* SEARCH BAR */}
+          <div className="bg-white rounded-xl p-4 shadow-sm">
+            <div className="grid grid-cols-12 gap-3 items-center">
+              <div className="col-span-4 flex items-center gap-2 border rounded-md px-3 py-2">
+                <Search size={16} className="text-gray-400" />
+                <input
+                  placeholder="Key words / role"
+                  className="outline-none text-sm w-full"
+                />
               </div>
 
-              <p className="text-xs text-gray-400 mt-3">
-                5 days ago
-              </p>
+              <div className="col-span-3 flex items-center gap-2 border rounded-md px-3 py-2">
+                <MapPin size={16} className="text-gray-400" />
+                <input
+                  placeholder="Location"
+                  className="outline-none text-sm w-full"
+                />
+              </div>
+
+              <button className="col-span-2 border rounded-md px-4 py-2 text-sm text-gray-600">
+                Filters
+              </button>
+
+              <button className="col-span-3 bg-[#2456e6] text-white rounded-md px-4 py-2 text-sm">
+                Find Jobs
+              </button>
             </div>
 
-            {/* Right */}
-            <img
-              src="https://images.unsplash.com/photo-1581092334651-ddf26d9b09d3"
-              alt="job"
-              className="w-28 h-20 rounded object-cover"
-            />
+            {/* SEARCH TAGS */}
+            <div className="flex gap-2 mt-3 text-xs text-gray-600">
+              {[
+                "Driver , Australia",
+                "Cooking , Australia",
+                "Office staff , Australia",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 bg-gray-100 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* QUICK FILTERS */}
+          <div className="mt-6">
+            <h3 className="text-sm font-semibold mb-2">Quick Filters</h3>
+            <div className="flex gap-3 flex-wrap text-sm">
+              <Filter icon={<MapPin size={14} />} label="Nearby" />
+              <Filter icon={<Clock size={14} />} label="Part time" />
+              <Filter icon={<Briefcase size={14} />} label="Full time" />
+              <Filter icon={<DollarSign size={14} />} label="Daily wages" />
+              <Filter icon={<Moon size={14} />} label="Night shift" />
+            </div>
+          </div>
+
+          {/* TOP RECOMMENDED */}
+          <div className="mt-6">
+            <h3 className="text-sm font-semibold mb-3">
+              Top Recommended
+            </h3>
+
+            <div className="bg-white rounded-xl p-4 shadow-sm flex justify-between">
+              <div>
+                <h4 className="font-semibold text-sm flex items-center gap-2">
+                  Security Guard
+                  <span className="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded">
+                    Top match
+                  </span>
+                </h4>
+                <p className="text-xs text-gray-500">Metro mall</p>
+
+                <div className="flex gap-2 mt-3 text-xs">
+                  <Tag icon={<MapPin size={12} />} label="Gold Coast" />
+                  <Tag icon={<Briefcase size={12} />} label="full time" />
+                  <Tag icon={<DollarSign size={12} />} label="Monthly" />
+                  <Tag icon={<Moon size={12} />} label="Night shift" />
+                </div>
+
+                <div className="flex gap-4 text-xs text-gray-500 mt-3">
+                  <span>5 days ago</span>
+                  <span className="flex items-center gap-1">
+                    <Bookmark size={12} /> Save job
+                  </span>
+                  <span>✕ Hide job</span>
+                </div>
+              </div>
+
+              <img
+                src="https://images.unsplash.com/photo-1521791136064-7986c2920216"
+                className="w-28 h-20 rounded-md object-cover"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT SIDEBAR */}
+        <div className="col-span-3">
+          <div className="bg-white rounded-xl p-4 shadow-sm">
+            <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
+              Saved searches <Bookmark size={14} />
+            </h3>
+
+            <div className="border rounded-md px-3 py-2 text-sm flex justify-between items-center">
+              <span>Security Guard in Gold coast</span>
+              <span className="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded">
+                2 new
+              </span>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/* SMALL COMPONENTS */
+function Filter({ icon, label }) {
+  return (
+    <div className="flex items-center gap-1 border bg-white px-3 py-1.5 rounded-full">
+      {icon}
+      {label}
+    </div>
+  );
+}
+
+function Tag({ icon, label }) {
+  return (
+    <div className="flex items-center gap-1 border px-2 py-1 rounded">
+      {icon}
+      {label}
     </div>
   );
 }
