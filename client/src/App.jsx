@@ -28,7 +28,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Profile3 from "./pages/profile3";
 import Home from "./pages/home";
-import Home2 from "./pages/Home2";
+import Home2 from "./pages/home2";
 
 function App() {
   return (
