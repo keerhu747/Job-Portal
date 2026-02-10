@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "server",
   "version": "1.0.0",
@@ -18,3 +19,6 @@
     "nodemon": "^3.1.11"
   }
 }
+=======
+ 
+>>>>>>> 2a22058 (first commit)
