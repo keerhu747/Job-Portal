@@ -26,7 +26,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
-
+import Profile3 from "./pages/profile3";
 
 function App() {
   return (
@@ -34,6 +34,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/profile3" element={<Profile3 />} />
     </Routes>
   );
 }
