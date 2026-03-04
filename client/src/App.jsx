@@ -34,6 +34,17 @@ import Home from "./pages/Home";
 import Home2 from "./pages/Home2";
 import Home3 from "./pages/Home3";
 import Home4 from "./pages/Home4";
+import Home5 from "./pages/Home5";
+import Savejobs from "./pages/Savejobs";
+import Myappln from "./pages/Myappln";
+import Myappln2 from "./pages/Myappln2";
+import Myappln3 from "./pages/Myappln3";
+import Myappln4 from "./pages/Myappln4";
+import Myappln5 from "./pages/Myappln5";
+import Msg from "./pages/Msg";
+import Topcompany from "./pages/Topcompany";
+import Upgrade from "./pages/Upgrade";
+
 
 
 
@@ -48,7 +59,17 @@ function App() {
        <Route path="/home" element={<Home />} />
        <Route path="/home2" element={<Home2 />} />
        <Route path="/home3" element={<Home3 />} />
-       <Route path="/apply" element={<Home4 />} />
+       <Route path="/home4" element={<Home4 />} />
+       <Route path="/home5" element={<Home5 />} />
+       <Route path="/savejobs" element={<Savejobs />} />
+       <Route path="/myappln" element={<Myappln />} />
+       <Route path="/myappln2" element={<Myappln2 />} />
+       <Route path="/myappln3" element={<Myappln3 />} />
+       <Route path="/myappln4" element={<Myappln4 />} />
+       <Route path="/myappln5" element={<Myappln5 />} />
+       <Route path="/msg" element={<Msg />} />
+       <Route path="/topcompany" element={<Topcompany />} />
+       <Route path="/upgrade" element={<Upgrade />} />
        </Routes>
  );
 }

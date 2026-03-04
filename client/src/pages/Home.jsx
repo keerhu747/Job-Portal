@@ -182,3 +182,4 @@ function Filter({ icon, label }) {
     </div>
   );
 }
+
