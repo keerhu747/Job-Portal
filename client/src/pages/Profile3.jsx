@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile3() {
+   const navigate = useNavigate();
   const [employed, setEmployed] = useState(true);
 
   return (
@@ -151,6 +153,7 @@ export default function Profile3() {
           {/* Buttons */}
           <div className="flex justify-end gap-4 pt-6">
             <button
+              onClick={() => navigate("/Profile2")}
               type="button"
               className="px-8 py-2 border border-gray-400 rounded-md"
             >
@@ -158,6 +161,7 @@ export default function Profile3() {
             </button>
 
             <button
+              onClick={() => navigate("/Home")}
               type="submit"
               className="px-8 py-2 bg-blue-600 text-white rounded-md"
             >

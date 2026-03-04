@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   FaHandsHelping,
   FaWarehouse,
@@ -9,6 +11,7 @@ import {
 import { MdRestaurant } from "react-icons/md";
 
 export default function Profile2() {
+  const navigate = useNavigate();
   const [role, setRole] = useState("");
   const [passYear, setPassYear] = useState("");
   const [course, setCourse] = useState("");
@@ -179,8 +182,16 @@ export default function Profile2() {
 
         {/* Footer */}
         <div className="mt-8 flex justify-between">
-          <button className="border px-6 py-2 rounded-md">Back</button>
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-md">
+          <button
+            type="button" 
+            onClick={() => navigate("/Profile")}
+            className="border px-6 py-2 rounded-md">
+            Back
+            </button>
+          <button 
+            type="button" 
+            onClick={() => navigate("/Profile3")}
+            className="bg-blue-600 text-white px-6 py-2 rounded-md">
             Continue
           </button>
         </div>

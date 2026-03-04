@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+  const navigate = useNavigate();
   const [step] = useState(1);
 
   return (
@@ -119,14 +121,16 @@ export default function Profile() {
           {/* Buttons */}
           <div className="flex justify-end gap-4 pt-6">
             <button
-              type="button"
+              type="button" 
+              onClick={() => navigate("/Register")}
               className="px-8 py-2 border border-gray-400 rounded-md"
             >
               Back
             </button>
 
             <button
-              type="submit"
+              type="button" 
+              onClick={() => navigate("/Profile2")}
               className="px-8 py-2 bg-blue-600 text-white rounded-md"
             >
               Continue
