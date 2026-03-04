@@ -14,43 +14,7 @@ export default function EmpJobs() {
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r px-6 py-6 relative">
-        <h1 className="text-xl font-bold mb-8 text-blue-600">Talentpoint</h1>
-
-        <nav className="space-y-4 text-sm">
-          <MenuItem
-            icon={<Home size={18} />}
-            label="Dashboard"
-            onClick={() => navigate("/empdashboard")}
-          />
-          <MenuItem
-            icon={<Briefcase size={18} />}
-            label="Jobs"
-            active
-          />
-          <MenuItem icon={<Users size={18} />} label="Candidates" />
-          <MenuItem icon={<MessageSquare size={18} />} label="Message" />
-          <MenuItem
-            icon={<Settings size={18} />}
-            label="Settings"
-            onClick={() => navigate("/empsettings")}
-          />
-        </nav>
-
-        {/* Profile */}
-        <div className="absolute bottom-6 flex items-center gap-3">
-          <img
-            src="https://i.pravatar.cc/40"
-            className="rounded-full"
-            alt="profile"
-          />
-          <div>
-            <p className="text-sm font-medium">Alex Rivera</p>
-            <p className="text-xs text-gray-500">Hiring Manager</p>
-          </div>
-        </div>
-      </aside>
-
+     
       {/* Main */}
       <main className="flex-1 p-8">
         {/* Top Bar */}
@@ -63,9 +27,9 @@ export default function EmpJobs() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Bell className="text-gray-500" />
+            
             <button 
-             onClick={() => navigate("/post-job")}
+             onClick={() => navigate("/emplayout/post-job")}
             className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm">
               + Post New Jobs
             </button>

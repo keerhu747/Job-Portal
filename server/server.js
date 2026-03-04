@@ -1,24 +1,87 @@
-const express = require("express");
-const cors = require("cors");
-require("dotenv").config();
+import express from "express";
+import cors from "cors";
+import bcrypt from "bcryptjs";
+import db from "./src/config/db.js";
 
 const app = express();
 
-// middleware
+// ✅ Middlewares
 app.use(cors());
 app.use(express.json());
 
-// test route
-app.get("/", (req, res) => {
-  res.send("Job Portal Server Running ✅");
+
+// ==============================
+// 🔐 ADMIN REGISTER (Auto Hash)
+// ==============================
+app.post("/admin/register", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "All fields required" });
+  }
+
+  try {
+    // Check if admin already exists
+    db.query("SELECT * FROM admin WHERE email = ?", [email], async (err, result) => {
+      if (err) return res.status(500).json(err);
+
+      if (result.length > 0) {
+        return res.status(400).json({ message: "Admin already exists" });
+      }
+
+      // Hash password automatically
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Insert into DB
+      db.query(
+        "INSERT INTO admin (email, password) VALUES (?, ?)",
+        [email, hashedPassword],
+        (err, result) => {
+          if (err) return res.status(500).json(err);
+
+          res.json({ message: "Admin Registered Successfully" });
+        }
+      );
+    });
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
-// routes
-// const userRoutes = require("./routes/userRoutes");
-// app.use("/api/users", userRoutes);
 
-const PORT = process.env.PORT || 5000;
+// ==============================
+// 🔐 ADMIN LOGIN
+// ==============================
+app.post("/admin/login", (req, res) => {
+  const { email, password } = req.body;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  if (!email || !password) {
+    return res.status(400).json({ message: "All fields required" });
+  }
+
+  db.query("SELECT * FROM admin WHERE email = ?", [email], async (err, result) => {
+    if (err) return res.status(500).json(err);
+
+    if (result.length === 0) {
+      return res.status(401).json({ message: "Admin not found" });
+    }
+
+    const admin = result[0];
+
+    const isMatch = await bcrypt.compare(password, admin.password);
+
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    res.json({ message: "Login successful" });
+  });
+});
+
+
+// ==============================
+// 🚀 START SERVER
+// ==============================
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
 });

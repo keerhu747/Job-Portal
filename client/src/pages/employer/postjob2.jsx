@@ -44,19 +44,7 @@ export default function Postjob2() {
   return (
     <div className="min-h-screen bg-gray-100 flex">
 
-      {/* Sidebar */}
-      <aside className="w-64 bg-white border-r px-6 py-6">
-        <h1 className="text-xl font-bold mb-8 text-blue-600">Talentpoint</h1>
-
-        <nav className="space-y-3">
-          <MenuItem icon={<Home size={18} />} label="Dashboard" onClick={() => navigate("/empdashboard")} />
-          <MenuItem icon={<Briefcase size={18} />} label="Jobs" active />
-          <MenuItem icon={<Users size={18} />} label="Candidates" />
-          <MenuItem icon={<MessageSquare size={18} />} label="Message" />
-          <MenuItem icon={<Settings size={18} />} label="Settings" onClick={() => navigate("/empsettings")} />
-        </nav>
-      </aside>
-
+      
       {/* Main Content */}
       <div className="flex-1 p-10">
 
@@ -195,14 +183,14 @@ export default function Postjob2() {
               {/* Buttons */}
               <div className="flex justify-end gap-4 mt-6">
                 <button
-                  onClick={() => navigate("/postjob")}
+                  onClick={() => navigate("/emplayout/post-job")}
                   className="px-6 py-2 border rounded text-sm"
                 >
                   Back
                 </button>
 
                 <button
-                  onClick={() => navigate("/postjob3")}
+                  onClick={() => navigate("/emplayout/postjob3")}
                   className="px-6 py-2 bg-blue-600 text-white rounded text-sm"
                 >
                   Continue

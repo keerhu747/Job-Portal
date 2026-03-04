@@ -8,7 +8,7 @@ export default function Emplogin() {
   
   const handleSubmit = () => {
     // later you can add API call here
-    navigate("/empdashboard");
+    navigate("/emplayout/empsettings");
   };
 
   return (
@@ -128,7 +128,9 @@ export default function Emplogin() {
 
         {/* Actions */}
         <div className="flex justify-end gap-4 mt-8">
-          <button className="px-6 py-2 border rounded-md text-sm">
+          <button 
+          onClick={() => navigate("/register")}
+          className="px-6 py-2 border rounded-md text-sm">
             Cancel
           </button>
           <button 

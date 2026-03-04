@@ -6,7 +6,6 @@ import {
   Users,
   MessageSquare,
   Settings,
-  Bell,
   CheckCircle,
   Lightbulb
 } from "lucide-react";
@@ -19,19 +18,7 @@ export default function PostJob() {
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex">
       {/* ========== Sidebar ========== */}
-      <aside className="w-64 bg-white border-r px-6 py-6">
-        <h1 className="text-xl font-bold mb-8 text-blue-600">Talentpoint</h1>
-
-        <nav className="space-y-4 text-sm">
-          <MenuItem icon={<Home size={18} />} label="Dashboard"
-            onClick={() => navigate("/empdashboard")} />
-          <MenuItem icon={<Briefcase size={18} />} label="Jobs" active />
-          <MenuItem icon={<Users size={18} />} label="Candidates" />
-          <MenuItem icon={<MessageSquare size={18} />} label="Message" />
-          <MenuItem icon={<Settings size={18} />} label="Settings"
-            onClick={() => navigate("/empsettings")} />
-        </nav>
-      </aside>
+      
 
       {/* ========== Main Content ========== */}
       <main className="flex-1 p-8">
@@ -43,7 +30,6 @@ export default function PostJob() {
               Step 1 of 3 | Fill the basic information about the Position
             </p>
           </div>
-          <Bell className="text-gray-500" />
         </div>
 
         {/* Progress */}
@@ -110,11 +96,13 @@ export default function PostJob() {
 
             {/* Buttons */}
             <div className="flex justify-end gap-4 pt-4">
-              <button className="px-5 py-2 border rounded-md text-sm">
+              <button 
+             onClick={() => navigate("/emplayout/empjobs")}
+               className="px-5 py-2 border rounded-md text-sm">
                 Back
               </button>
               <button 
-               onClick={() => navigate("/postjob2")}
+               onClick={() => navigate("/emplayout/postjob2")}
               className="px-6 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
                 Continue
               </button>

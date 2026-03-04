@@ -15,29 +15,6 @@ export default function EmpDashboard() {
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r px-6 py-6 relative">
-        <h1 className="text-xl font-bold mb-8 text-blue-600">Talentpoint</h1>
-
-        <nav className="space-y-4 text-sm">
-          <MenuItem icon={<Home size={18} />} label="Dashboard" active />
-          <MenuItem icon={<Briefcase size={18} />} label="Jobs"  onClick={() => navigate("/empjobs")} />
-          <MenuItem icon={<Users size={18} />} label="Candidates" />
-          <MenuItem icon={<MessageSquare size={18} />} label="Message" />
-          <MenuItem icon={<Settings size={18} />} label="Settings" onClick={() => navigate("/empsettings")}
- />
-        </nav>
-
-        <div className="absolute bottom-6 flex items-center gap-3">
-          <img
-            src="https://i.pravatar.cc/40"
-            className="rounded-full"
-          />
-          <div>
-            <p className="text-sm font-medium">Alex Rivera</p>
-            <p className="text-xs text-gray-500">Hiring Manager</p>
-          </div>
-        </div>
-      </aside>
 
       {/* Main */}
       <main className="flex-1 p-8">
@@ -69,16 +46,16 @@ export default function EmpDashboard() {
         {/* Content */}
         <div className="grid grid-cols-3 gap-6">
           {/* Table */}
-          <div className="col-span-2 bg-white rounded-lg p-6 border">
+          <div className="col-span-2 bg-white rounded-lg p-6 border-gray">
             <div className="flex justify-between mb-4">
               <h3 className="font-semibold">Recent Job Posting</h3>
               <button className="text-sm text-blue-600">View All</button>
             </div>
 
             <table className="w-full text-sm">
-              <thead className="text-gray-500 border-b">
+              <thead className="text-gray-500 border-b border-gray">
                 <tr>
-                  <th className="text-left py-2">Job Title</th>
+                  <th className="text-left border-gray py-2">Job Title</th>
                   <th>Posted Date</th>
                   <th>Applicants</th>
                   <th>Status</th>
@@ -101,13 +78,13 @@ export default function EmpDashboard() {
           </div>
 
           {/* Right Panel */}
-          <div className="bg-white rounded-lg p-6 border">
+          <div className="bg-white rounded-lg p-6 border-gray">
             <h3 className="font-semibold mb-4">AI recommended Candidates</h3>
 
             <CandidateCard />
             <CandidateCard />
 
-            <div className="mt-4 border rounded-lg p-4 text-center">
+            <div className="mt-4 border-gray rounded-lg p-4 text-center">
               <p className="text-sm font-medium mb-1">Upgrade Premium</p>
               <p className="text-xs text-gray-500">
                 To unlock more Profiles
@@ -121,7 +98,9 @@ export default function EmpDashboard() {
 
         {/* Actions */}
         <div className="mt-6 flex gap-4">
-          <button className="border px-4 py-2 rounded-md text-sm">
+          <button 
+          onClick={() => navigate("/emplayout/post-job")}
+          className="border px-4 py-2 rounded-md text-sm">
             Post a new Job
           </button>
           <button className="border px-4 py-2 rounded-md text-sm">
@@ -179,6 +158,7 @@ function JobRow({ title, date, applicants }) {
         <button className="text-blue-600 text-xs">Manage</button>
       </td>
     </tr>
+    
   );
 }
 

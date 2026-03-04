@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import {
   Home,
   Briefcase,
   Users,
   MessageSquare,
   Settings,
-  Bell,
-  Search
+  ChevronRight,
+  Lock,
+  Shield,
 } from "lucide-react";
-
 
 export default function EmpSettings() {
   const navigate = useNavigate();
@@ -29,133 +28,129 @@ export default function EmpSettings() {
 
   return (
     <div className="flex min-h-screen bg-[#f5f7fb]">
-        {/* Sidebar */}
-<aside className="w-64 bg-white border-r px-6 py-6 relative">
-  <h1 className="text-xl font-bold mb-8 text-blue-600">Talentpoint</h1>
-
-  <nav className="space-y-4 text-sm">
-    <MenuItem
-      icon={<Home size={18} />}
-      label="Dashboard"
-      onClick={() => navigate("/empdashboard")}
-    />
-    <MenuItem icon={<Briefcase size={18} />} label="Jobs"  onClick={() => navigate("/empjobs")} />
-    <MenuItem icon={<Users size={18} />} label="Candidates" />
-    <MenuItem icon={<MessageSquare size={18} />} label="Message" />
-    <MenuItem
-      icon={<Settings size={18} />}
-      label="Settings"
-      active
-    />
-  </nav>
-</aside>
-
-
+      
 
       {/* Main Content */}
-      <div className="flex-1 p-10">
+     <div className="flex-1 px-16 py-14">
+        <div className="max-w-6xl">
 
-        <h1 className="text-2xl font-semibold mb-8">Account Settings</h1>
+          <div className="grid grid-cols-2 gap-14">
 
-        <div className="grid grid-cols-2 gap-8">
+            {/* LEFT COLUMN */}
+            <div className="space-y-10">
 
-          {/* Company Identity */}
-          <div className="bg-white p-6 rounded-lg shadow-sm border">
-            <h2 className="font-semibold mb-6">Company Identity</h2>
+              <Input label="Company Name" name="companyName" value={form.companyName} onChange={handleChange} />
 
-            <div className="space-y-4">
-
-              <div>
-                <label className="block text-sm mb-1">Company Name</label>
-                <input
-                  name="companyName"
-                  value={form.companyName}
-                  onChange={handleChange}
-                  className="w-full border rounded px-3 py-2"
-                />
-              </div>
+              <Input label="Website URL" name="website" value={form.website} onChange={handleChange} />
 
               <div>
-                <label className="block text-sm mb-1">Website URL</label>
-                <input
-                  name="website"
-                  value={form.website}
-                  onChange={handleChange}
-                  className="w-full border rounded px-3 py-2"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm mb-1">Company Type</label>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Company Type
+                </label>
                 <select
                   name="companyType"
                   value={form.companyType}
                   onChange={handleChange}
-                  className="w-full border rounded px-3 py-2"
+                  className="w-full h-[52px] border border-gray-300 rounded-lg px-4 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
                 >
                   <option>Supply Chain & Transport</option>
-                  <option>IT</option>
-                  <option>Finance</option>
                 </select>
               </div>
 
+              {/* Logo Section */}
               <div>
-                <label className="block text-sm mb-1">Company Logo</label>
-                <button className="w-full border-2 border-dashed p-4 rounded text-blue-600">
-                  Replace Logo
-                </button>
-              </div>
+                <label className="block text-sm font-medium text-gray-700 mb-4">
+                  Company Logo
+                </label>
 
-            </div>
-          </div>
+                <div className="flex items-center gap-6">
+                  <div className="w-36 h-36 bg-[#f3e2c7] flex items-center justify-center rounded-md">
+                    <Lock className="text-orange-500" size={32} />
+                  </div>
 
-          {/* Account & Security */}
-          <div className="bg-white p-6 rounded-lg shadow-sm border">
-            <h2 className="font-semibold mb-6">Account & Security</h2>
-
-            <div className="space-y-4">
-
-              <div>
-                <label className="block text-sm mb-1">Office Email</label>
-                <input
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  className="w-full border rounded px-3 py-2"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm mb-1">Phone Number</label>
-                <input
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  className="w-full border rounded px-3 py-2"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm mb-2">Security Action</label>
-                <button className="w-full bg-blue-100 text-blue-700 p-3 rounded mb-3">
-                  Change Password
-                </button>
-
-                <div className="bg-yellow-50 border border-yellow-300 p-3 rounded">
-                  <p className="text-sm">
-                    Two-factor authentication is recommended for higher security.
-                  </p>
-                  <button className="text-yellow-700 text-sm mt-2">
-                    Enable Now
-                  </button>
+                  <div>
+                    <p className="text-blue-600 font-medium cursor-pointer">
+                      Replace Logo
+                    </p>
+                    <p className="text-sm text-gray-500 mt-2 leading-relaxed">
+                      JPG , PNG or SVG . Max 2.5 MB . 1 : 1 ratio recommended
+                    </p>
+                  </div>
                 </div>
               </div>
 
             </div>
-          </div>
 
+            {/* RIGHT COLUMN */}
+            <div className="space-y-10">
+
+              <Input label="Office Email" name="email" value={form.email} onChange={handleChange} />
+
+              <Input label="Phone number" name="phone" value={form.phone} onChange={handleChange} />
+
+              {/* Security Action */}
+              <div>
+                <h3 className="text-lg font-semibold mb-6">
+                  Security Action
+                </h3>
+
+                {/* Change Password Card */}
+                <div className="flex items-center justify-between border-2 border-blue-500 bg-blue-50 px-6 py-5 rounded-lg cursor-pointer">
+                  <div className="flex items-center gap-4">
+                    <Lock className="text-blue-600" size={20} />
+                    <div>
+                      <p className="font-medium text-gray-800">
+                        Change Password
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        Last Updated 2 months ago
+                      </p>
+                    </div>
+                  </div>
+                  <ChevronRight className="text-blue-600" size={20} />
+                </div>
+
+                {/* 2FA Card */}
+                <div className="mt-6 border-2 border-orange-400 bg-orange-50 px-6 py-5 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <Shield className="text-orange-500 mt-1" size={20} />
+                    <div>
+                      <p className="font-semibold text-orange-600">
+                        Two factor authentication
+                      </p>
+                      <p className="text-sm text-gray-600 mt-1">
+                        Recommended for higher security. currently disable
+                      </p>
+                      <p className="text-orange-600 font-medium text-sm mt-3 cursor-pointer">
+                        Enable Now
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function Input({ label, name, value, onChange }) {
+  return (
+    <div>
+      <label className="block text-sm text-gray-600 mb-2">
+        {label}
+      </label>
+      <input
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
     </div>
   );
 }
@@ -164,12 +159,14 @@ function MenuItem({ icon, label, active, onClick }) {
   return (
     <div
       onClick={onClick}
-      className={`flex items-center gap-3 px-3 py-2 rounded-md cursor-pointer
-      ${active ? "bg-blue-50 text-blue-600" : "text-gray-600 hover:bg-gray-100"}`}
+      className={`flex items-center gap-3 px-3 py-2 rounded-md cursor-pointer text-sm
+      ${active
+        ? "bg-blue-50 text-blue-600 font-medium"
+        : "text-gray-600 hover:bg-gray-100"
+      }`}
     >
       {icon}
-      <span>{label}</span>
+      {label}
     </div>
   );
 }
-
