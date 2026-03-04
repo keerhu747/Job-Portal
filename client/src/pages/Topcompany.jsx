@@ -1,8 +1,8 @@
-
+import { useNavigate } from "react-router-dom";
 import { Bell, MessageCircle, Search, Bookmark } from "lucide-react";
 
 export default function TopCompanies() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white-100">
 
@@ -30,7 +30,12 @@ export default function TopCompanies() {
         <span>Job search</span>
         <span>My Application</span>
         <span>Top companies</span>
-        <span>Upgrade Premium</span>
+        <span
+          className="cursor-pointer"
+          onClick={() => navigate("/upgrade")}
+        >
+          Upgrade Premium
+        </span>
       </div>
 
       {/* ===== CENTER WHITE AREA ===== */}

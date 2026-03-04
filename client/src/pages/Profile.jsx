@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const [step] = useState(1);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex justify-center py-10">
@@ -127,6 +129,7 @@ export default function Profile() {
 
             <button
               type="submit"
+              onClick={() => navigate("/profile2")}
               className="px-8 py-2 bg-blue-600 text-white rounded-md"
             >
               Continue
