@@ -29,7 +29,6 @@ export default function Home() {
             </p>
           </div>
         </div>
-
         <div className="flex items-center gap-4">
           <Bell size={18} />
           <img

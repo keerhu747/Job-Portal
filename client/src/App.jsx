@@ -43,8 +43,30 @@ import Myappln4 from "./pages/Myappln4";
 import Myappln5 from "./pages/Myappln5";
 import Msg from "./pages/Msg";
 import Topcompany from "./pages/Topcompany";
-import Upgrade from "./pages/Upgrade";
 
+
+
+
+
+import Emplogin from "./pages/employer/emplogin";
+import EmpLayout from "./components/emplayout";
+import EmpDashboard from "./pages/employer/empdashboard";
+import EmpSettings from "./pages/employer/empsettings";
+import EmpMessage from "./pages/employer/empmessage";
+import EmpJobs from "./pages/employer/empjobs";
+import PostJob from "./pages/employer/postjob";
+import PostJob2 from "./pages/employer/postjob2";
+import PostJob3 from "./pages/employer/postjob3";
+import EmpCandidates from "./pages/employer/empcandidates";
+
+
+import AdminLogin from "./pages/admin/adminlogin";
+import AdminDashboard from "./pages/admin/admindashhboard";
+import AdminJob from "./pages/admin/adminjob";
+import UserManagement from "./pages/admin/adminusermgmt";
+import Subscription from "./pages/admin/adminsubscription";
+import AdminProfile from "./pages/admin/adminprofile";
+import Upgrade from "./pages/upgrade";
 
 
 
@@ -70,9 +92,30 @@ function App() {
        <Route path="/msg" element={<Msg />} />
        <Route path="/topcompany" element={<Topcompany />} />
        <Route path="/upgrade" element={<Upgrade />} />
-       </Routes>
- );
+      
+
+       <Route path="/emplogin" element={<Emplogin />} />
+
+      <Route path="/emplayout" element={<EmpLayout />}>
+        <Route path="empdashboard" element={<EmpDashboard />} />
+        <Route path="empsettings" element={<EmpSettings />} />
+        <Route path="empmessage" element={<EmpMessage />} />
+        <Route path="empcandidates" element={<EmpCandidates />} />
+        <Route path="empjobs" element={<EmpJobs />} />
+        <Route path="post-job" element={<PostJob />} />
+        <Route path="postjob2" element={<PostJob2 />} />
+        <Route path="postjob3" element={<PostJob3 />} />
+      </Route>
+
+      <Route path="/adminlogin" element={<AdminLogin />} />
+      <Route path="/admindashboard" element={<AdminDashboard />} />
+      <Route path="/adminjob" element={<AdminJob/>} />
+      <Route path="/adminusermgmt" element={<UserManagement/>} />
+      <Route path="/adminsubscription" element={<Subscription/>} />
+      <Route path="/adminprofile" element={<AdminProfile/>} />
+    
+</Routes>
+  );
+ 
 }
-
-
 export default App;

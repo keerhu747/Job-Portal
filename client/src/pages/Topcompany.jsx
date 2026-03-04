@@ -1,6 +1,8 @@
+
 import { Bell, MessageCircle, Search, Bookmark } from "lucide-react";
 
 export default function TopCompanies() {
+  // const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white-100">
 
@@ -27,7 +29,7 @@ export default function TopCompanies() {
       <div className="bg-blue-600 text-white px-8 py-3 flex gap-10 text-sm">
         <span>Job search</span>
         <span>My Application</span>
-        <span className="border-b-2 border-white pb-1">Top companies</span>
+        <span>Top companies</span>
         <span>Upgrade Premium</span>
       </div>
 

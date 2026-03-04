@@ -79,7 +79,10 @@
   );
 }
 */
+import { useNavigate } from "react-router-dom";
+
 export default function Register() {
+   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex items-center justify-center px-4">
       {/* Card */}
@@ -100,7 +103,9 @@ export default function Register() {
             <button className="flex-1 py-2 text-sm font-medium bg-blue-600 text-white">
               Student
             </button>
-            <button className="flex-1 py-2 text-sm font-medium bg-white text-gray-600">
+            <button
+              onClick={() => navigate("/emplogin")}
+              className="flex-1 py-2 text-sm font-medium bg-white text-gray-600">
               Employer
             </button>
           </div>
