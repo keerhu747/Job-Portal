@@ -156,14 +156,18 @@ export default function Register() {
           </label>
 
           {/* Submit */}
-          <button className="w-full py-3 bg-blue-600 text-white rounded-md font-medium">
+          <button
+          onClick={() => navigate("/Profile")}
+          className="w-full py-3 bg-blue-600 text-white rounded-md font-medium">
             Create Account
           </button>
 
           {/* Login */}
           <p className="text-center text-sm mt-4">
             Already have an account?
-            <span className="text-blue-600 ml-1 cursor-pointer">Log in</span>
+            <span 
+            onClick={() => navigate("/")}
+            className="text-blue-600 ml-1 cursor-pointer">Log in</span>
           </p>
 
           {/* Divider */}
