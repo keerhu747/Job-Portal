@@ -1,8 +1,14 @@
-const { Sequelize } = require("sequelize");
+import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize("talentpoint", "root", "", {
-  host: "localhost",
-  dialect: "mysql"
-});
 
-module.exports = sequelize;
+const sequelize = new Sequelize(
+  "job-portal",
+  "root",
+  "",
+  {
+    host: "localhost",
+    dialect: "mysql"
+  }
+);
+
+export default sequelize;

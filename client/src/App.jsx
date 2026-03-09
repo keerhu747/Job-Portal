@@ -100,15 +100,12 @@ function App() {
         <Route path="/profileview" element={<Profileview />} />
       
 
-<<<<<<< HEAD
        <Route path="/emplogin" element={<Emplogin />} />
        <Route path="/empupgrade" element={<Upgrade1 />} />
 
-=======
        
        
-      <Route path="/emplogin" element={<Emplogin />} />
->>>>>>> d658d4797a32a39d37a550dcd1e7ab0b43261230
+      
       <Route path="/emplayout" element={<EmpLayout />}>
         <Route path="empdashboard" element={<EmpDashboard />} />
         <Route path="empsettings" element={<EmpSettings />} />
