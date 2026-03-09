@@ -38,11 +38,11 @@ export default function Postjob3() {
         <div className="flex justify-between items-center mb-4">
           <div>
             <h2 className="text-lg font-semibold">Post the job</h2>
-            <p className="text-sm text-gray-500">
+            <p className="relative text-sm text-gray-500">
               Step 3 of 3 | Review and Verify the information before post
+              <p className="absolute top-0 left-235 text-blue-600 ">98%</p>
             </p>
           </div>
-          <Bell className="text-gray-500" />
         </div>
 
         {/* Progress */}
@@ -112,7 +112,7 @@ export default function Postjob3() {
               <div className="mt-6 bg-blue-600 text-white text-sm p-3 rounded flex justify-between items-center">
                 <span>You can post up to 2 jobs for free.</span>
                 <button 
-                onClick={() => navigate("/upgrade")}
+                onClick={() => navigate("/empupgrade")}
                 className="underline">Upgrade Now</button>
               </div>
             </div>

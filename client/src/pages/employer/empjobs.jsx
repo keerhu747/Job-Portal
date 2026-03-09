@@ -37,19 +37,19 @@ export default function EmpJobs() {
         </div>
 
         {/* Tabs */}
-        <div className="bg-white border rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
           <div className="flex gap-6 text-sm mb-4">
             <button className="text-blue-600 font-medium">
-              Active <span className="ml-1 text-xs">(12)</span>
+              Active <span className="ml-1 text-xs">12</span>
             </button>
             <button className="text-gray-500">
-              Closed <span className="ml-1 text-xs">(42)</span>
+              Closed <span className="ml-1 text-xs">42</span>
             </button>
           </div>
 
           {/* Table */}
           <table className="w-full text-sm">
-            <thead className="text-gray-500 border-b">
+            <thead className="text-gray-500 ">
               <tr>
                 <th className="text-left py-2">Job Title</th>
                 <th>Posted Date</th>
@@ -58,6 +58,23 @@ export default function EmpJobs() {
                 <th>Action</th>
               </tr>
             </thead>
+            <tbody>
+                <JobRow
+                  title="Warehouse Associate"
+                  date="Oct 12, 2025"
+                  applicants="55"
+                />
+                <JobRow
+                  title="Customer Service"
+                  date="Nov 21, 2025"
+                  applicants="83"
+                />
+                 <JobRow
+                  title="Sales Executive"
+                  date="Nov 21, 2025"
+                  applicants="83"
+                />
+              </tbody>
           </table>
         </div>
       </main>
@@ -82,7 +99,7 @@ function MenuItem({ icon, label, active, onClick }) {
 
 function JobRow({ title, date, applicants }) {
   return (
-    <tr className="border-b last:border-none">
+    <tr className="border-gary-200 last:border-none">
       <td className="py-3">{title}</td>
       <td className="text-center">{date}</td>
       <td className="text-center">{applicants}</td>

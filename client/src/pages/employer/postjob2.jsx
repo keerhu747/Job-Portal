@@ -52,8 +52,9 @@ export default function Postjob2() {
 
           {/* Header */}
           <h2 className="text-lg font-semibold">Post the job</h2>
-          <p className="text-sm text-gray-500 mb-4">
+          <p className="relative text-sm text-gray-500 mb-4">
             Step 2 of 3 | Fill the Basic information about the Position
+            <p className="absolute top-0 left-215 text-blue-600 ">75%</p>
           </p>
 
           {/* Progress */}
@@ -61,7 +62,7 @@ export default function Postjob2() {
             <div className="bg-blue-600 h-2 rounded" style={{ width: "75%" }}></div>
           </div>
 
-          <div className="flex justify-between text-xs text-gray-500 mb-6">
+          <div className="flex justify-between text-xs text-black-400 mb-6">
             <span>Job Info</span>
             <span className="text-blue-600 font-medium">Experience & Skills</span>
             <span>Review</span>
@@ -78,7 +79,7 @@ export default function Postjob2() {
                   Required Skills *
                 </label>
 
-                <div className="border rounded p-3 flex flex-wrap gap-2 items-center">
+                <div className="border border-gray-200 rounded p-3 flex flex-wrap gap-2 items-center">
                   {skills.map((skill, index) => (
                     <span
                       key={index}
@@ -105,7 +106,7 @@ export default function Postjob2() {
                 <label className="block text-sm font-medium mb-2">
                   Education
                 </label>
-                <select className="w-full border rounded px-3 py-2 text-sm">
+                <select className="w-full border border-gray-200 rounded px-3 py-2 text-sm">
                   <option>Minimum Education Level</option>
                   <option>High School</option>
                   <option>Diploma</option>
@@ -121,7 +122,7 @@ export default function Postjob2() {
                   <input
                     type="text"
                     defaultValue="Night"
-                    className="w-full border rounded px-3 py-2 text-sm"
+                    className="w-full border border-gray-200 rounded px-3 py-2 text-sm"
                   />
                 </div>
 
@@ -131,7 +132,7 @@ export default function Postjob2() {
                   </label>
                   <input
                     type="date"
-                    className="w-full border rounded px-3 py-2 text-sm"
+                    className="w-full border border-gray-200 rounded px-3 py-2 text-sm"
                   />
                 </div>
               </div>
@@ -143,17 +144,26 @@ export default function Postjob2() {
                 </label>
 
                 <div className="grid grid-cols-2 gap-4">
+                  <div>
+                  <label className="block text-sm font-medium mb-3">
+                  Min Salary (Monthly AUD)
+                </label>
                   <input
                     type="text"
-                    placeholder="Min Salary (Monthly AUD)"
-                    className="border rounded px-3 py-2 text-sm"
+                    placeholder="$40,000"
+                    className="relative w-76 mr-auto col-span-2 border border-gray-200 rounded px-3 py-2 text-sm "
                   />
-
+                  </div>
+                  <div>
+                  <label className="block text-sm font-medium mb-3">
+                  Max Salary (Monthly AUD)
+                </label>
                   <input
                     type="text"
-                    placeholder="Max Salary (Monthly AUD)"
-                    className="border rounded px-3 py-2 text-sm"
+                    placeholder="6,500"
+                    className="relative w-76 mr-auto col-span-2 border border-gray-200 rounded px-3 py-2 text-sm"
                   />
+                  </div>
                 </div>
 
                 {/* Negotiable Toggle */}
@@ -184,7 +194,7 @@ export default function Postjob2() {
               <div className="flex justify-end gap-4 mt-6">
                 <button
                   onClick={() => navigate("/emplayout/post-job")}
-                  className="px-6 py-2 border rounded text-sm"
+                  className="px-6 py-2 border border-gray-200 rounded text-sm"
                 >
                   Back
                 </button>

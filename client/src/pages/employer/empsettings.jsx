@@ -8,6 +8,7 @@ import {
   Settings,
   ChevronRight,
   Lock,
+  Building2,
   Shield,
 } from "lucide-react";
 
@@ -31,13 +32,19 @@ export default function EmpSettings() {
       
 
       {/* Main Content */}
-     <div className="flex-1 px-16 py-14">
+     <div className="flex-1 px-1 py-2">
         <div className="max-w-6xl">
+          <h2 className="text-2xl font-semibold pl-3 pb-6  ">Account Settings</h2>
 
           <div className="grid grid-cols-2 gap-14">
 
             {/* LEFT COLUMN */}
-            <div className="space-y-10">
+
+            <div className="space-y-10 border border-gray-300 pl-10 pr-4 py-2">
+              <div className="flex items-center gap-2 mb-4 text-gray-700 font-semibold text-sm pb-2">
+                <Building2 size={18} className="text-blue-600" />
+                <span>COMPANY IDENTITY</span>
+              </div>
 
               <Input label="Company Name" name="companyName" value={form.companyName} onChange={handleChange} />
 
@@ -82,8 +89,11 @@ export default function EmpSettings() {
             </div>
 
             {/* RIGHT COLUMN */}
-            <div className="space-y-10">
-
+            <div className="space-y-10 border border-gray-300 pl-10 pr-4 py-2">
+              <div className="flex items-center gap-2 mb-4 text-gray-700 font-semibold text-sm pb-2">
+                <Shield size={18} className="text-blue-600" />
+                <span>ACCOUNT & SECURITY</span>
+              </div>
               <Input label="Office Email" name="email" value={form.email} onChange={handleChange} />
 
               <Input label="Phone number" name="phone" value={form.phone} onChange={handleChange} />

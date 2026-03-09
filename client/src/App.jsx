@@ -58,6 +58,7 @@ import PostJob from "./pages/employer/postjob";
 import PostJob2 from "./pages/employer/postjob2";
 import PostJob3 from "./pages/employer/postjob3";
 import EmpCandidates from "./pages/employer/empcandidates";
+import Upgrade1 from "./pages/employer/empupgrade";
 
 
 import AdminLogin from "./pages/admin/adminlogin";
@@ -95,6 +96,7 @@ function App() {
       
 
        <Route path="/emplogin" element={<Emplogin />} />
+       <Route path="/empupgrade" element={<Upgrade1 />} />
 
       <Route path="/emplayout" element={<EmpLayout />}>
         <Route path="empdashboard" element={<EmpDashboard />} />

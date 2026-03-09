@@ -69,7 +69,7 @@ export default function Emplogin() {
           </div>
 
           {/* Company Size */}
-          <div>
+          <div className="md:col-span-2">
             <label className="form-label">Company Size</label>
             <select className="form-input">
               <option>Select Company Size</option>
@@ -86,17 +86,14 @@ export default function Emplogin() {
             <input type="password" className="form-input" />
           </div>
 
-          {/* Empty spacer (to align layout) */}
-          <div></div>
-
           {/* Company Name */}
-          <div>
+          <div className="md:col-span-2">
             <label className="form-label">Company Name</label>
             <input className="form-input" placeholder="Company name" />
           </div>
 
           {/* About Company */}
-          <div className="md:col-span-2">
+          <div>
             <label className="form-label">
               About Company <span className="text-red-500">*</span>
             </label>

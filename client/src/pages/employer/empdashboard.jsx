@@ -13,49 +13,55 @@ import {
 export default function EmpDashboard() {
     const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-[#f4f6fb] flex">
+    <div className="min-h-screen bg-[#f4f6fb] flex ">
       {/* Sidebar */}
 
       {/* Main */}
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-1">
         {/* Top Bar */}
-        <div className="flex justify-between items-center mb-6">
-          <div className="relative w-96">
-            <Search className="absolute left-3 top-2.5 text-gray-400" size={16} />
-            <input
-              className="w-full pl-10 pr-4 py-2 border rounded-md text-sm"
-              placeholder="Search Employer here"
-            />
-          </div>
-          <Bell className="text-gray-500" />
-        </div>
-
-        <h2 className="text-xl font-semibold">Employer Dashboard</h2>
+        <h2 className="text-xl font-semibold ">Employer Dashboard</h2>
         <p className="text-sm text-gray-500 mb-6">
           Welcome back Alex Rivera, Here’s a summary of your current requirement activities
         </p>
 
         {/* Stats */}
         <div className="grid grid-cols-4 gap-4 mb-6">
-          <StatCard title="Active Job Posting" value="12" />
-          <StatCard title="Total Applicants" value="1,208" />
-          <StatCard title="New Message" value="2" />
-          <StatCard title="AI recommended Candidates" badge="BETA" />
-        </div>
+          <StatCard title="Active Job Posting" value="12" icon={Briefcase} />
+          <StatCard title="Total Applicants" value="1,208" icon={Users}/>
+          <StatCard title="New Message" value="2" icon={MessageSquare}/>
+          {/*ai  card*/}
+          <div className="row-span-2 bg-white rounded-lg p-6 border border-gray-200 ">
+            <h3 className="font-semibold mb-4">AI recommended Candidates</h3>
 
-        {/* Content */}
-        <div className="grid grid-cols-3 gap-6">
+            <CandidateCard />
+            <CandidateCard />
+
+            <div className="mt-4 border border-gray-200 rounded-lg p-4 text-center">
+              <p className="text-sm font-medium mb-1">Upgrade Premium</p>
+              <button
+              onClick={() => navigate("/empupgrade")}
+               className="mt-2 text-blue-600 text-sm  underline">
+                Upgrade Premium
+              </button>
+              <p className="text-xs text-blue-500">
+                To unlock more Profiles
+              </p>
+            </div>
+        </div>
+    
+
+           {/* Content */}
           {/* Table */}
-          <div className="col-span-2 bg-white rounded-lg p-6 border-gray">
+          <div className="col-span-3 bg-white rounded-lg p-6 border border-gray-200">
             <div className="flex justify-between mb-4">
               <h3 className="font-semibold">Recent Job Posting</h3>
               <button className="text-sm text-blue-600">View All</button>
             </div>
 
             <table className="w-full text-sm">
-              <thead className="text-gray-500 border-b border-gray">
+              <thead className="text-black border-b border-gray-200">
                 <tr>
-                  <th className="text-left border-gray py-2">Job Title</th>
+                  <th className="text-left  border border-gray-200 py-2">Job Title</th>
                   <th>Posted Date</th>
                   <th>Applicants</th>
                   <th>Status</th>
@@ -76,34 +82,21 @@ export default function EmpDashboard() {
               </tbody>
             </table>
           </div>
-
-          {/* Right Panel */}
-          <div className="bg-white rounded-lg p-6 border-gray">
-            <h3 className="font-semibold mb-4">AI recommended Candidates</h3>
-
-            <CandidateCard />
-            <CandidateCard />
-
-            <div className="mt-4 border-gray rounded-lg p-4 text-center">
-              <p className="text-sm font-medium mb-1">Upgrade Premium</p>
-              <p className="text-xs text-gray-500">
-                To unlock more Profiles
-              </p>
-              <button className="mt-2 text-blue-600 text-sm">
-                Upgrade Now
-              </button>
-            </div>
-          </div>
         </div>
 
         {/* Actions */}
+        <div>
+          <p className =" text-gray-500">Quick Actions</p>
+        </div>
         <div className="mt-6 flex gap-4">
           <button 
           onClick={() => navigate("/emplayout/post-job")}
-          className="border px-4 py-2 rounded-md text-sm">
+          className="border px-4 py-2  text-sm text-blue-500 underline">
             Post a new Job
           </button>
-          <button className="border px-4 py-2 rounded-md text-sm">
+          <button 
+          onClick={() => navigate("/emplayout/empmessage")}
+          className="border px-4 py-2 text-sm text-blue-500 underline">
             View Messages
           </button>
         </div>
@@ -127,10 +120,13 @@ function MenuItem({ icon, label, active, onClick }) {
   );
 }
 
-function StatCard({ title, value, badge }) {
+function StatCard({ title, value, badge, icon: Icon}) {
   return (
-    <div className="bg-white border rounded-lg p-4">
-      <p className="text-xs text-gray-500 mb-1">{title}</p>
+    <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="flex justify-between items-center mb-2">
+        <p className="text-xs text-gray-500 mb-1">{title}</p>
+        {Icon && <Icon size={20} className="text-blue-500" />}
+      </div>
       <div className="flex items-center gap-2">
         <h3 className="text-xl font-semibold">{value}</h3>
         {badge && (
@@ -139,6 +135,7 @@ function StatCard({ title, value, badge }) {
           </span>
         )}
       </div>
+      
     </div>
   );
 }
@@ -155,7 +152,7 @@ function JobRow({ title, date, applicants }) {
         </span>
       </td>
       <td className="text-center">
-        <button className="text-blue-600 text-xs">Manage</button>
+        <button className="text-white px-2 py-1 bg-blue-600 text-xs">Manage</button>
       </td>
     </tr>
     

@@ -26,32 +26,30 @@ export default function PostJob() {
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-xl font-semibold">Post the job</h2>
-            <p className="text-sm text-gray-500">
+            <p className="relative text-sm text-gray-500">
               Step 1 of 3 | Fill the basic information about the Position
+              <p className="absolute top-0 left-235 text-blue-600 ">25%</p>
             </p>
           </div>
         </div>
 
         {/* Progress */}
-        <div className="w-full bg-gray-200 h-2 rounded mb-6">
-          <div className="w-1/4 bg-blue-600 h-2 rounded"></div>
-        </div>
+          <div className="w-full bg-gray-200 h-2 rounded mb-2">
+            <div className="bg-blue-600 h-2 rounded" style={{ width: "25%" }}></div>
+          </div>
 
-        {/* Tabs */}
-        <div className="flex gap-8 text-sm mb-6">
-          <span className="text-blue-600 font-medium border-b-2 border-blue-600 pb-2">
-            Job Info
-          </span>
-          <span className="text-gray-400">Experience & Skills</span>
-          <span className="text-gray-400">Review</span>
-        </div>
+          <div className="flex justify-between text-xs text-black-500 mb-6">
+            <span>Job Info</span>
+            <span className="text-blue-600 font-medium">Experience & Skills</span>
+            <span>Review</span>
+          </div>
 
         {/* Form Layout */}
         <div className="grid grid-cols-3 gap-8">
           {/* Left Form */}
           <div className="col-span-2 bg-white p-6 rounded-lg shadow-sm space-y-5">
 
-            <Input label="Job title" placeholder="Enter the Job title" />
+            <Input className="border border-gray-200" label="Job title" placeholder="Enter the Job title" />
 
             <div className="grid grid-cols-2 gap-5">
               <Select label="Job categories" />
@@ -84,12 +82,12 @@ export default function PostJob() {
             </div>
 
             {/* Description */}
-            <div>
-              <label className="block text-sm font-medium mb-2">
+            <div className="bordr border-gray-600 ">
+              <label className=" block text-sm font-medium mb-2">
                 Job description
               </label>
               <textarea
-                className="w-full border rounded-md p-3 h-36 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border rounded-md p-3 h-36 text-sm focus:outline-none "
                 placeholder="Describe the roles and responsibility & Benefits..."
               />
             </div>
@@ -161,7 +159,7 @@ function Input({ label, placeholder }) {
         {label} <span className="text-red-500">*</span>
       </label>
       <input
-        className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full border border-gray-600 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder={placeholder}
       />
     </div>
@@ -174,7 +172,7 @@ function Select({ label }) {
       <label className="block text-sm font-medium mb-1">
         {label} <span className="text-red-500">*</span>
       </label>
-      <select className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <select className="w-full border border-gray-600 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
         <option>Select Job categories</option>
       </select>
     </div>
