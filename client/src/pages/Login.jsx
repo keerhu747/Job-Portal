@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import google from "../assets/google.png";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -91,7 +93,7 @@ export default function Login() {
             </div>
 
             <button
-              onClick={login}
+              onClick={() => navigate("/home")}
               className="w-full bg-blue-600 text-white py-2 rounded-md"
             >
               LOG IN

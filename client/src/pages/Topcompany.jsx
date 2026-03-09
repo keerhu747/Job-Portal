@@ -27,9 +27,9 @@ export default function TopCompanies() {
 
       {/* ===== NAVBAR ===== */}
       <div className="bg-blue-600 text-white px-8 py-3 flex gap-10 text-sm">
-        <span>Job search</span>
-        <span>My Application</span>
-        <span>Top companies</span>
+        <span onClick={() => navigate("/home")}>Job search</span>
+        <span onClick={() => navigate("/myappln")}>My Application</span>
+        <span className="border-b-2 border-white pb-1">Top companies</span>
         <span
           className="cursor-pointer"
           onClick={() => navigate("/upgrade")}

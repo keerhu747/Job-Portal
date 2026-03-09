@@ -34,9 +34,9 @@ export default function Home3() {
       <div className="bg-blue-600 text-white px-8 py-3 flex justify-between">
         <div className="flex gap-8 text-sm">
           <span className="border-b-2 border-white pb-1">Job search</span>
-          <span>My Application</span>
-          <span>Top companies</span>
-          <span>Upgrade Premium</span>
+          <span onClick={() => navigate("/myappln")}>My Application</span>
+          <span onClick={() => navigate("/topcompany")}>Top companies</span>
+          <span onClick={() => navigate("/upgrade")}>Upgrade Premium</span>
         </div>
         <div className="flex gap-5">
           <Bell size={18} />

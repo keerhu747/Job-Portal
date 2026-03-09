@@ -40,8 +40,8 @@ export default function Home5() {
           >
             My Application
           </span>
-          <span>Top companies</span>
-          <span>Upgrade Premium</span>
+          <span onClick={() => navigate("/topcompany")}>Top companies</span>
+          <span onClick={() => navigate("/upgrade")}>Upgrade Premium</span>
         </div>
         <div className="flex gap-4">
           <Bell size={18} />
@@ -94,7 +94,9 @@ export default function Home5() {
             </p>
 
             <div className="flex gap-3 mt-5">
-              <button className="bg-blue-600 text-white px-4 py-2 rounded text-sm">
+              <button 
+              onClick={() => navigate("/home")}
+              className="bg-blue-600 text-white px-4 py-2 rounded text-sm">
                 Search More Jobs
               </button>
               <button className="border px-4 py-2 rounded text-sm">

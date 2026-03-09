@@ -23,7 +23,7 @@ export default function MyAppln2() {
       {/* ===== NAVBAR ===== */}
       <div className="bg-blue-600 text-white px-8 py-3 flex justify-between text-sm">
         <div className="flex gap-8">
-          <span>Job search</span>
+          <span onClick={() => navigate("/home")}>Job search</span>
           <span className="border-b-2 border-white pb-1">My Application</span>
           <span
             className="cursor-pointer"
@@ -31,7 +31,7 @@ export default function MyAppln2() {
           >
             Top companies
           </span>
-          <span>Upgrade Premium</span>
+          <span onClick={() => navigate("/upgrade")}>Upgrade Premium</span>
         </div>
         <div className="flex gap-4">🔔 💬</div>
       </div>
