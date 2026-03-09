@@ -1,4 +1,4 @@
-import express from "express";
+/*import express from "express";
 import cors from "cors";
 import bcrypt from "bcryptjs";
 import db from "./src/config/db.js";
@@ -8,7 +8,6 @@ const app = express();
 // ✅ Middlewares
 app.use(cors());
 app.use(express.json());
-
 
 // ==============================
 // 🔐 ADMIN REGISTER (Auto Hash)
@@ -77,11 +76,29 @@ app.post("/admin/login", (req, res) => {
     res.json({ message: "Login successful" });
   });
 });
-
+*/
 
 // ==============================
 // 🚀 START SERVER
 // ==============================
+import express from "express";
+import sequelize from "./src/config/db.js";
+import authRoutes from "./src/routes/authRoutes.js";
+
+import "./src/models/userModel.js";
+
+const app = express();
+
+app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+
+sequelize.sync()
+.then(() => {
+  console.log("Database connected & tables created");
+})
+.catch(err => console.log(err));
+
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
