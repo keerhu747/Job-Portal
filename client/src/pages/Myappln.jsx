@@ -27,7 +27,7 @@ export default function Myappln(){
 
       {/* ===== NAVBAR (ONLY 4 ITEMS) ===== */}
       <div className="bg-blue-600 text-white px-8 py-3 flex gap-10 text-sm">
-        <span>Job search</span>
+        <span onClick={() => navigate("/home")}>Job search</span>
         <span className="border-b-2 border-white pb-1">My Application</span>
         <span
           className="cursor-pointer"
@@ -35,7 +35,7 @@ export default function Myappln(){
         >
           Top companies
         </span>
-        <span>Upgrade Premium</span>
+        <span onClick={() => navigate("/upgrade")}>Upgrade Premium</span>
       </div>
 
       {/* ===== PAGE CONTENT ===== */}

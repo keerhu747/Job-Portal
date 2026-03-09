@@ -49,9 +49,9 @@ export default function Home2() {
           <span className="border-b-2 border-white pb-1">
             Job search
           </span>
-          <span>My Application</span>
-          <span>Top companies</span>
-          <span>Upgrade Premium</span>
+          <span onClick={() => navigate("/myappln")}>My Application</span>
+          <span onClick={() => navigate("/topcompany")}>Top companies</span>
+          <span onClick={() => navigate("/upgrade")}>Upgrade Premium</span>
         </div>
 
         <div className="flex gap-4">

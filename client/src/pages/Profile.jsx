@@ -8,7 +8,7 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex justify-center py-10">
-      <div className="w-full max-w-6xl bg-white rounded-xl shadow-md px-10 py-8">
+      <div className="w-full max-w-7xl bg-white rounded-xl shadow-md px-7 py-3">
 
         {/* Header */}
         <h2 className="text-2xl font-semibold text-black">
@@ -51,21 +51,21 @@ export default function Profile() {
               <label className="block text-sm font-medium text-black mb-2">
                 First Name <span className="text-red-500">*</span>
               </label>
-              <input className="input" placeholder="Jane" />
+              <input className="w-full border border-gray-200 rounded-md p-1" placeholder="Jane" />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-black mb-2">
                 Last Name
               </label>
-              <input className="input" placeholder="Doe" />
+              <input className="w-full border border-gray-200 rounded-md p-1" placeholder="Doe" />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-black mb-2">
                 Location
               </label>
-              <input className="input" placeholder="Enter the location" />
+              <input className="w-full border border-gray-200 rounded-md p-1" placeholder="Enter the location" />
             </div>
           </div>
 
@@ -75,21 +75,21 @@ export default function Profile() {
               <label className="block text-sm font-medium text-black mb-2">
                 Email Address <span className="text-red-500">*</span>
               </label>
-              <input className="input" placeholder="john@gmail.com" />
+              <input className="w-full border border-gray-200 rounded-md p-1" placeholder="john@gmail.com" />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-black mb-2">
                 Phone Number <span className="text-red-500">*</span>
               </label>
-              <input className="input" placeholder="9876543210" />
+              <input className="w-full border border-gray-200 rounded-md p-1" placeholder="9876543210" />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-black mb-2">
                 Enter Password <span className="text-red-500">*</span>
               </label>
-              <input type="password" className="input" />
+              <input type="password" className="w-full border border-gray-200 rounded-md p-1" />
             </div>
           </div>
 
@@ -99,7 +99,7 @@ export default function Profile() {
               <label className="block text-sm font-medium text-black mb-2">
                 Confirm Password <span className="text-red-500">*</span>
               </label>
-              <input type="password" className="input" />
+              <input type="password" className="w-full border border-gray-200 rounded-md p-1" />
             </div>
           </div>
 

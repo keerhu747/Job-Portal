@@ -68,6 +68,9 @@ import UserManagement from "./pages/admin/adminusermgmt";
 import Subscription from "./pages/admin/adminsubscription";
 import AdminProfile from "./pages/admin/adminprofile";
 import Upgrade from "./pages/upgrade";
+import Settings from "./pages/settings";
+import Profileview from "./pages/profileview";
+
 
 
 
@@ -93,11 +96,19 @@ function App() {
        <Route path="/msg" element={<Msg />} />
        <Route path="/topcompany" element={<Topcompany />} />
        <Route path="/upgrade" element={<Upgrade />} />
+       <Route path="/settings" element={<Settings />} />
+        <Route path="/profileview" element={<Profileview />} />
       
 
+<<<<<<< HEAD
        <Route path="/emplogin" element={<Emplogin />} />
        <Route path="/empupgrade" element={<Upgrade1 />} />
 
+=======
+       
+       
+      <Route path="/emplogin" element={<Emplogin />} />
+>>>>>>> d658d4797a32a39d37a550dcd1e7ab0b43261230
       <Route path="/emplayout" element={<EmpLayout />}>
         <Route path="empdashboard" element={<EmpDashboard />} />
         <Route path="empsettings" element={<EmpSettings />} />

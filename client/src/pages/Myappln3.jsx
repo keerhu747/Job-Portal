@@ -36,7 +36,7 @@ export default function Myappln3() {
 
       {/* NAVBAR */}
       <div className="bg-blue-700 text-white px-8 py-3 flex gap-10 text-sm">
-        <span>Job search</span>
+        <span onClick={() => navigate("/home")}>Job search</span>
         <span className="border-b-2 border-white pb-1">My Application</span>
         <span
           className="cursor-pointer"
@@ -44,7 +44,7 @@ export default function Myappln3() {
         >
           Top companies
         </span>
-        <span>Upgrade Premium</span>
+        <span onClick={() => navigate("/upgrade")}>Upgrade Premium</span>
       </div>
 
       {/* CONTENT */}
