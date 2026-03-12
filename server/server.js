@@ -26,13 +26,10 @@ const app = express();
 // middleware
 app.use(cors()); 
 // ✅ enable CORS
-<<<<<<< HEAD
 app.use(cors({
   origin: "http://localhost:5173"
 }));
 
-=======
->>>>>>> c08f91903541a9345d8c6e119f100d513dba6cf2
 app.use(express.json());
 
 // routes
@@ -40,18 +37,13 @@ app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/employer", employerRoutes);
 app.use("/api/admin",adminRoutes);
-app.use("/api/profile", profileRoutes);
-app.use("/api/admin", adminRoutes);
 
 
 // database connection
-<<<<<<< HEAD
 sequelize.sync({ alter : true})
 .then(() => {
 app.use("/api/profile", profileRoutes);
 app.use("/api/admin", adminRoutes);
-=======
->>>>>>> c08f91903541a9345d8c6e119f100d513dba6cf2
 // database
 sequelize.sync()
 .then(async () => {
