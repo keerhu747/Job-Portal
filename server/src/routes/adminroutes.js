@@ -1,9 +1,8 @@
 import express from "express";
-import { adminLogin, createAdmin } from "../controllers/admincontroller.js";
+import { saveAdminProfile } from "../controllers/adminController.js";
 
 const router = express.Router();
 
-router.post("/create-admin", createAdmin);
-router.post("/login", adminLogin);
+router.post("/save-profile", saveAdminProfile);
 
 export default router;

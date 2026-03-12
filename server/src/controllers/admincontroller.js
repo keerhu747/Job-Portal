@@ -1,76 +1,20 @@
-import bcrypt from "bcrypt";
-import Admin from "../models/adminmodel.js";
+import Admin from "../models/adminModel.js";
 
-// Create admin (store credentials)
-export const createAdmin = async (req, res) => {
-
+export const saveAdminProfile = async (req, res) => {
   try {
-
-    const { email, password } = req.body;
-
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const { name, email, phone, timezone } = req.body;
 
     const admin = await Admin.create({
+      name,
       email,
-      password: hashedPassword
+      phone,
+      timezone
     });
 
-    res.json({
-      message: "Admin created",
-      admin
-    });
+    res.json({ message: "Admin profile saved", admin });
 
   } catch (error) {
-
-    res.status(500).json({
-      error: error.message
-    });
-
+    console.log(error);
+    res.status(500).json({ message: "Error saving profile" });
   }
-
-};
-
-// Login admin
-export const adminLogin = async (req, res) => {
-
-  try {
-
-    const { email, password } = req.body;
-
-    const admin = await Admin.findOne({
-      where: { email }
-    });
-
-    if (!admin) {
-      return res.status(401).json({
-        message: "Admin not found"
-      });
-    }
-
-    const passwordMatch = await bcrypt.compare(password, admin.password);
-
-    if (!passwordMatch) {
-      return res.status(401).json({
-        message: "Invalid password"
-      });
-    }
-
-    res.json({
-      message: "Login successful",
-      admin: {
-        id: admin.id,
-        email: admin.email
-      }
-    });
-    console.log("Entered password:", password);
-    console.log("Stored password:", admin.password);
-
-  } catch (error) {
-
-    res.status(500).json({
-      error: error.message
-    });
-
-  }
-
 };
