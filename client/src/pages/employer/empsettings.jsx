@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import {
@@ -10,7 +9,6 @@ import {
 } from "lucide-react";
 
 export default function EmpSettings() {
-  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     companyName: "Global Logistics Hub",
@@ -32,6 +30,7 @@ export default function EmpSettings() {
       "http://localhost:5000/api/employer/save-settings",
       form
     );
+    console.log(res.data); 
 
     alert("Settings Saved Successfully");
 

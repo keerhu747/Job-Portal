@@ -13,7 +13,6 @@ import {
 
 export default function PostJob() {
   const navigate = useNavigate();
-  const jobId = localStorage.getItem("jobId");
 
   const [workType, setWorkType] = useState("Full-time");
   const [formData, setFormData] = useState({

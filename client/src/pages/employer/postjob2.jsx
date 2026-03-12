@@ -44,6 +44,7 @@ export default function Postjob2() {
         ...formData
       }
     );
+    console.log(res.data); 
 
     alert("Step 2 Saved Successfully");
 

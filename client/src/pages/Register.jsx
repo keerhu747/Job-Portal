@@ -5,44 +5,39 @@ import axios from "axios";
 export default function Register() {
    const navigate = useNavigate();
    const [formData, setFormData] = useState({
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  confirmPassword: ""
-});
-const handleChange = (e) => {
-  setFormData({
-    ...formData,
-    [e.target.name]: e.target.value
-  });
-};
-const handleRegister = async (e) => {
-  e.preventDefault();   // important
+     firstName: "",
+     lastName: "",
+     email: "",
+     password: ""
+   });
+   const handleChange = (e) => {
+     setFormData({
+       ...formData,
+       [e.target.name]: e.target.value
+    });
+   };
+   const handleSubmit = async () => {
+     try {
 
-  console.log("Button clicked");
-  console.log(formData);
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/register",
+         formData
+      );
 
-  if (formData.password !== formData.confirmPassword) {
-    alert("Passwords do not match");
-    return;
-  }
+      console.log(res.data);
 
-  try {
-    const res = await axios.post(
-  "http://localhost:5000/api/auth/register",
-  formData
-);
+      alert("Account Created Successfully");
 
-console.log(res.data);
-localStorage.setItem("userId", res.data.user.id);
+      navigate("/Profile");
 
-    navigate("/Profile");
+     } catch (error) {
 
-  } catch (error) {
-    console.error("Registration failed", error);
-  }
-};
+       console.error(error);
+
+       alert("Registration Failed");
+
+     }
+   };
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex items-center justify-center px-4">
       {/* Card */}
@@ -70,18 +65,18 @@ localStorage.setItem("userId", res.data.user.id);
             </button>
           </div>
 
-        <form onSubmit={handleRegister}>  {/* Name */}
+        <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}> {/* Name */}
           <div className="flex gap-3 mb-4">
             <input
               name="firstName"
-              className="w-full p-2 border rounded-md text-sm"
               onChange={handleChange}
+              className="w-full p-2 border rounded-md text-sm"
               placeholder="First Name"
             />
             <input
               name="lastName"
-              className="w-full p-2 border rounded-md text-sm"
               onChange={handleChange}
+              className="w-full p-2 border rounded-md text-sm"
               placeholder="Last Name"
             />
           </div>
@@ -89,8 +84,8 @@ localStorage.setItem("userId", res.data.user.id);
           {/* Email */}
           <input
             name="email"
-            className="w-full p-2 border rounded-md text-sm mb-4"
             onChange={handleChange}
+            className="w-full p-2 border rounded-md text-sm mb-4"
             placeholder="Email Address"
           />
 
@@ -99,15 +94,15 @@ localStorage.setItem("userId", res.data.user.id);
             <input
               type="password"
               name="password"
-              className="w-full p-2 border rounded-md text-sm"
               onChange={handleChange}
+              className="w-full p-2 border rounded-md text-sm"
               placeholder="Password"
             />
             <input
               type="password"
-               name="confirmPassword"
-              className="w-full p-2 border rounded-md text-sm"
+              name="confirmpassword"
               onChange={handleChange}
+              className="w-full p-2 border rounded-md text-sm"
               placeholder="Confirm Password"
             />
           </div>
@@ -127,7 +122,7 @@ localStorage.setItem("userId", res.data.user.id);
 
           {/* Submit */}
           <button
-          type="submit"
+          onClick={handleSubmit}
           className="w-full py-3 bg-blue-600 text-white rounded-md font-medium">
             Create Account
           </button>
