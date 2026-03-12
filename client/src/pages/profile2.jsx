@@ -57,6 +57,22 @@ export default function Profile2() {
     }
   };
 
+const handleNext = () => {
+
+const data = {
+year: role,
+passoutYear: passYear,
+course: course,
+jobLocation: location,
+skills: skills.join(","),
+jobPreference: jobPref.join(",")
+};
+
+localStorage.setItem("profile2", JSON.stringify(data));
+
+navigate("/Profile3");
+};
+
   return (
 
     <div className="min-h-screen bg-[#e9edf7] flex items-center justify-center">
@@ -252,7 +268,7 @@ export default function Profile2() {
           </button>
 
           <button
-            onClick={() => navigate("/Profile3")}
+           onClick={handleNext}
             className="bg-blue-600 text-white px-6 py-2 rounded"
           >
             Continue

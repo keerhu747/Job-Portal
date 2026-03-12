@@ -10,7 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^1.13.6",
+=======
+    "axios": "^1.13.4",
+    "bcrypt": "^6.0.0",
+>>>>>>> f80e8b0364ca4c3f9d5ed16ccb22f2d467091418
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "express": "^5.2.1",

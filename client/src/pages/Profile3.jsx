@@ -1,9 +1,93 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Profile2() {
   const navigate = useNavigate();
   const [employed, setEmployed] = useState(true);
+
+const [experience, setExperience] = useState("");
+const [noticePeriod, setNoticePeriod] = useState("");
+const [startDate, setStartDate] = useState("");
+const [shift, setShift] = useState("");
+const [salaryMax, setSalaryMax] = useState("");
+const [salaryMin, setSalaryMin] = useState("");
+
+const handleSubmit = async () => {
+
+const userId = localStorage.getItem("userId");
+
+const profile1 = JSON.parse(localStorage.getItem("profile1"));
+const profile2 = JSON.parse(localStorage.getItem("profile2"));
+
+const finalData = {
+  userId,
+  ...profile1,
+  ...profile2,
+  totalWorkExperience: experience,
+  noticePeriod: noticePeriod,
+  startDate: startDate,
+  shift: shift,
+  expectedSalaryMax: salaryMax,
+  expectedSalaryMin: salaryMin,
+  currentlyEmployed: employed
+};
+
+try {
+
+const res = await axios.get(`http://localhost:5000/api/profile/${userId}`);
+
+if(res.data){
+
+await axios.put(
+`http://localhost:5000/api/profile/update/${userId}`,
+finalData
+);
+
+alert("Profile updated successfully");
+
+}else{
+
+await axios.post(
+"http://localhost:5000/api/profile/create",
+finalData
+);
+
+
+alert("Profile created successfully");
+
+}
+
+localStorage.removeItem("profile1");
+localStorage.removeItem("profile2");
+
+navigate("/home");
+
+}catch(error){
+
+console.error(error);
+
+await axios.post(
+"http://localhost:5000/api/profile/create",
+finalData
+);
+
+alert("Profile created successfully");
+
+}
+
+finally {
+
+  localStorage.removeItem("profile1");
+  localStorage.removeItem("profile2");
+
+  navigate("/home");
+
+}
+
+
+
+};
 
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex justify-center py-10">
@@ -73,11 +157,16 @@ export default function Profile2() {
                   Total Work Experience *
                 </label>
 
-                <select className="input">
-                  <option>Select Year</option>
-                  <option>Fresher</option>
-                  <option>1 Year</option>
-                  <option>2 Years</option>
+               <select
+                className="input"
+                value={experience}
+                onChange={(e) => setExperience(e.target.value)}
+                >
+                <option value="">Select experience</option>
+                <option value="Fresher">Fresher</option>
+                <option value="1 Year">1 Year</option>
+                <option value="2 Years">2 Years</option>
+                <option value="3 Years">3 Years</option>
                 </select>
               </div>
 
@@ -89,8 +178,11 @@ export default function Profile2() {
                 <p className="text-xs text-gray-500 mb-1">
                   Notice Period
                 </p>
-
-                <select className="input">
+                  <select
+                  className="input"
+                  value={noticePeriod}
+                  onChange={(e)=>setNoticePeriod(e.target.value)}
+                  >
                   <option>Select Notice Period</option>
                   <option>Immediate</option>
                   <option>15 Days</option>
@@ -138,13 +230,19 @@ export default function Profile2() {
 
                 <p className="text-xs text-gray-500 mb-1">Date</p>
 
-                <input type="date" className="input mb-3" />
+                <input type="date" className="input mb-3"
+                value={startDate}
+                onChange={(e)=>setStartDate(e.target.value)}
+                />
 
                 <p className="text-xs text-gray-500 mb-1">
                   Preferred Shift
                 </p>
 
-                <select className="input">
+                <select className="input"
+                value={shift}
+                onChange={(e)=>setShift(e.target.value)}
+                >
                   <option>Select Shift preference</option>
                   <option>Day Shift</option>
                   <option>Night Shift</option>
@@ -164,7 +262,10 @@ export default function Profile2() {
                       Maximum
                     </p>
 
-                    <select className="input">
+                    <select className="input"
+                    value={salaryMax}
+                    onChange={(e)=>setSalaryMax(e.target.value)}
+                    >
                       <option>Max</option>
                       <option>3 LPA</option>
                       <option>5 LPA</option>
@@ -176,7 +277,10 @@ export default function Profile2() {
                       Minimum
                     </p>
 
-                    <select className="input">
+                    <select className="input"
+                    value={salaryMin}
+                    onChange={(e)=>setSalaryMin(e.target.value)}
+                    >
                       <option>Min</option>
                       <option>2 LPA</option>
                       <option>4 LPA</option>
@@ -200,7 +304,7 @@ export default function Profile2() {
             </button>
 
             <button 
-            onClick={() => navigate("/home")}
+            onClick={handleSubmit}
             className="px-8 py-2 bg-blue-600 text-white rounded-md">
               Save & Complete
             </button>
