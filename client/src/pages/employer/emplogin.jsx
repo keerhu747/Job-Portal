@@ -1,16 +1,52 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Emplogin() {
   const [role, setRole] = useState("HR Manager");
+  const [form, setForm] = useState({
+  firstName: "",
+  lastName: "",
+  location: "",
+  email: "",
+  phone: "",
+  password: "",
+  companySize: "",
+  companyName: "",
+  aboutCompany: ""
+});
+const handleChange = (e) => {
+  setForm({
+    ...form,
+    [e.target.name]: e.target.value
+  });
+};
+
   const navigate = useNavigate();
 
   
-  const handleSubmit = () => {
-    // later you can add API call here
-    navigate("/emplayout/empsettings");
-  };
+  const handleSubmit = async () => {
 
+  try {
+
+    await axios.post(
+      "http://localhost:5000/api/employer/create-employer",
+      {
+        ...form,
+        role
+      }
+    );
+
+    navigate("/emplayout/empsettings");
+
+  } catch (error) {
+
+    console.log(error);
+    alert("Registration Failed");
+
+  }
+
+};
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex justify-center py-10">
       <div className="w-full max-w-5xl bg-white rounded-xl shadow-sm p-8">
@@ -29,19 +65,37 @@ export default function Emplogin() {
             <label className="form-label">
               First Name <span className="text-red-500">*</span>
             </label>
-            <input className="form-input" placeholder="Jane" />
+            <input
+              name="firstName"
+              value={form.firstName}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="Jane"
+            />
           </div>
 
           {/* Last Name */}
           <div>
             <label className="form-label">Last Name</label>
-            <input className="form-input" placeholder="Doe" />
+            <input
+              name="lastName"
+              value={form.lastName}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="Doe"
+            />
           </div>
 
           {/* Location */}
           <div>
             <label className="form-label">Location</label>
-            <input className="form-input" placeholder="Enter the location" />
+            <input
+              name="location"
+              value={form.location}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="Enter the location"
+            />
           </div>
 
           {/* Email */}
@@ -49,7 +103,13 @@ export default function Emplogin() {
             <label className="form-label">
               Work Email Address <span className="text-red-500">*</span>
             </label>
-            <input className="form-input" placeholder="john@gmail.com" />
+            <input
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="john@gmail.com"
+            />
           </div>
 
           {/* Phone */}
@@ -57,7 +117,13 @@ export default function Emplogin() {
             <label className="form-label">
               Phone number <span className="text-red-500">*</span>
             </label>
-            <input className="form-input" placeholder="+91 98765 43210" />
+            <input
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="+91 98765 43210"
+            />
           </div>
 
           {/* Password */}
@@ -65,13 +131,24 @@ export default function Emplogin() {
             <label className="form-label">
               Enter Password <span className="text-red-500">*</span>
             </label>
-            <input type="password" className="form-input" />
+            <input
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              className="form-input"
+            />
           </div>
 
           {/* Company Size */}
           <div className="md:col-span-2">
             <label className="form-label">Company Size</label>
-            <select className="form-input">
+            <select
+              name="companySize"
+              value={form.companySize}
+              onChange={handleChange}
+              className="form-input"
+            >
               <option>Select Company Size</option>
               <option>1–10</option>
               <option>11–50</option>
@@ -89,7 +166,13 @@ export default function Emplogin() {
           {/* Company Name */}
           <div className="md:col-span-2">
             <label className="form-label">Company Name</label>
-            <input className="form-input" placeholder="Company name" />
+            <input
+              name="companyName"
+              value={form.companyName}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="Company name"
+            />
           </div>
 
           {/* About Company */}
@@ -98,9 +181,12 @@ export default function Emplogin() {
               About Company <span className="text-red-500">*</span>
             </label>
             <textarea
+              name="aboutCompany"
+              value={form.aboutCompany}
+              onChange={handleChange}
               rows="4"
               className="form-input resize-none"
-            ></textarea>
+            />
           </div>
         </div>
 

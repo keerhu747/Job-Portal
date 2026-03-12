@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   Home,
   Briefcase,
@@ -12,8 +13,49 @@ import {
 
 export default function PostJob() {
   const navigate = useNavigate();
+  const jobId = localStorage.getItem("jobId");
 
   const [workType, setWorkType] = useState("Full-time");
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "",
+    location: "",
+    email: "",
+    description: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async () => {
+  try {
+
+    const res = await axios.post(
+      "http://localhost:5000/api/jobs/create",
+      {
+        ...formData,
+        workType
+      }
+    );
+
+    // Save job id for Step 2
+    localStorage.setItem("jobId", res.data.id);
+
+    alert("Job created successfully");
+
+    navigate("/emplayout/postjob2");
+
+  } catch (error) {
+
+    console.log(error);
+    alert("Job creation failed");
+
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex">
@@ -49,14 +91,29 @@ export default function PostJob() {
           {/* Left Form */}
           <div className="col-span-2 bg-white p-6 rounded-lg shadow-sm space-y-5">
 
-            <Input className="border border-gray-200" label="Job title" placeholder="Enter the Job title" />
+            <Input
+              label="Job title"
+              placeholder="Enter the Job title"
+              name="title"
+              onChange={handleChange}
+            />
 
             <div className="grid grid-cols-2 gap-5">
               <Select label="Job categories" />
-              <Input label="Location" placeholder="Enter the location" />
+              <Input
+                label="Location"
+                placeholder="Enter the location"
+                name="location"
+                onChange={handleChange}
+              />
             </div>
 
-            <Input label="Enter Your Email ID" placeholder="Enter the Email ID" />
+            <Input
+              label="Enter Your Email ID"
+              placeholder="Enter the Email ID"
+              name="email"
+              onChange={handleChange}
+            />
 
             {/* Work Type */}
             <div>
@@ -87,7 +144,9 @@ export default function PostJob() {
                 Job description
               </label>
               <textarea
-                className="w-full border rounded-md p-3 h-36 text-sm focus:outline-none "
+                name="description"
+                onChange={handleChange}
+                className="w-full border rounded-md p-3 h-36 text-sm focus:outline-none"
                 placeholder="Describe the roles and responsibility & Benefits..."
               />
             </div>
@@ -100,8 +159,8 @@ export default function PostJob() {
                 Back
               </button>
               <button 
-               onClick={() => navigate("/emplayout/postjob2")}
-              className="px-6 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
+               onClick={handleSubmit}
+               className="px-6 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
                 Continue
               </button>
             </div>
@@ -152,13 +211,15 @@ function MenuItem({ icon, label, active, onClick }) {
   );
 }
 
-function Input({ label, placeholder }) {
+function Input({ label, placeholder, name, onChange }) { 
   return (
     <div>
       <label className="block text-sm font-medium mb-1">
         {label} <span className="text-red-500">*</span>
       </label>
       <input
+        name={name}
+        onChange={onChange}
         className="w-full border border-gray-600 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder={placeholder}
       />

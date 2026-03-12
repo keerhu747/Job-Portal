@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   Home,
   Briefcase,
@@ -13,10 +14,49 @@ import {
 
 export default function Postjob2() {
   const navigate = useNavigate();
+  const jobId = localStorage.getItem("jobId");
 
   const [skills, setSkills] = useState(["Driving", "Helper"]);
   const [newSkill, setNewSkill] = useState("");
   const [negotiable, setNegotiable] = useState(true);
+  const [formData, setFormData] = useState({
+    education: "",
+    shift: "",
+    closeDate: "",
+    minSalary: "",
+    maxSalary: ""
+  });
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+  const handleSubmit = async () => {
+
+  try {
+
+    const res = await axios.put(
+      `http://localhost:5000/api/jobs/update-step2/${jobId}`,
+      {
+        skills,
+        negotiable,
+        ...formData
+      }
+    );
+
+    alert("Step 2 Saved Successfully");
+
+    navigate("/emplayout/postjob3");
+
+  } catch (error) {
+
+    console.log(error);
+    alert("Saving Failed");
+
+  }
+
+};
 
   const addSkill = () => {
     if (newSkill.trim() !== "") {
@@ -54,7 +94,7 @@ export default function Postjob2() {
           <h2 className="text-lg font-semibold">Post the job</h2>
           <p className="relative text-sm text-gray-500 mb-4">
             Step 2 of 3 | Fill the Basic information about the Position
-            <p className="absolute top-0 left-215 text-blue-600 ">75%</p>
+            <span className="absolute top-0 right-0 text-blue-600">75%</span>
           </p>
 
           {/* Progress */}
@@ -106,7 +146,11 @@ export default function Postjob2() {
                 <label className="block text-sm font-medium mb-2">
                   Education
                 </label>
-                <select className="w-full border border-gray-200 rounded px-3 py-2 text-sm">
+                <select
+                 name="education"
+                 onChange={handleChange}
+                 className="w-full border border-gray-200 rounded px-3 py-2 text-sm"
+                >
                   <option>Minimum Education Level</option>
                   <option>High School</option>
                   <option>Diploma</option>
@@ -120,9 +164,11 @@ export default function Postjob2() {
                 <div>
                   <label className="block text-sm font-medium mb-2">Shift</label>
                   <input
-                    type="text"
-                    defaultValue="Night"
-                    className="w-full border border-gray-200 rounded px-3 py-2 text-sm"
+                   type="text"
+                   name="shift"
+                   onChange={handleChange}
+                   placeholder="Night"
+                   className="w-full border border-gray-200 rounded px-3 py-2 text-sm"
                   />
                 </div>
 
@@ -132,6 +178,8 @@ export default function Postjob2() {
                   </label>
                   <input
                     type="date"
+                    name="closeDate"
+                    onChange={handleChange}
                     className="w-full border border-gray-200 rounded px-3 py-2 text-sm"
                   />
                 </div>
@@ -150,8 +198,10 @@ export default function Postjob2() {
                 </label>
                   <input
                     type="text"
+                    name="minSalary"
+                    onChange={handleChange}
                     placeholder="$40,000"
-                    className="relative w-76 mr-auto col-span-2 border border-gray-200 rounded px-3 py-2 text-sm "
+                    className="relative w-76 mr-auto col-span-2 border border-gray-200 rounded px-3 py-2 text-sm"
                   />
                   </div>
                   <div>
@@ -160,8 +210,10 @@ export default function Postjob2() {
                 </label>
                   <input
                     type="text"
+                    name="maxSalary"
+                    onChange={handleChange}
                     placeholder="6,500"
-                    className="relative w-76 mr-auto col-span-2 border border-gray-200 rounded px-3 py-2 text-sm"
+                   className="relative w-76 mr-auto col-span-2 border border-gray-200 rounded px-3 py-2 text-sm"
                   />
                   </div>
                 </div>
@@ -200,7 +252,7 @@ export default function Postjob2() {
                 </button>
 
                 <button
-                  onClick={() => navigate("/emplayout/postjob3")}
+                  onClick={handleSubmit}
                   className="px-6 py-2 bg-blue-600 text-white rounded text-sm"
                 >
                   Continue

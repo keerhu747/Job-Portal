@@ -80,9 +80,45 @@
 }
 */
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 export default function Register() {
    const navigate = useNavigate();
+   const [formData, setFormData] = useState({
+     firstName: "",
+     lastName: "",
+     email: "",
+     password: ""
+   });
+   const handleChange = (e) => {
+     setFormData({
+       ...formData,
+       [e.target.name]: e.target.value
+    });
+   };
+   const handleSubmit = async () => {
+     try {
+
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/register",
+         formData
+      );
+
+      console.log(res.data);
+
+      alert("Account Created Successfully");
+
+      navigate("/Profile");
+
+     } catch (error) {
+
+       console.error(error);
+
+       alert("Registration Failed");
+
+     }
+   };
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex items-center justify-center px-4">
       {/* Card */}
@@ -113,10 +149,14 @@ export default function Register() {
           {/* Name */}
           <div className="flex gap-3 mb-4">
             <input
+              name="firstName"
+              onChange={handleChange}
               className="w-full p-2 border rounded-md text-sm"
               placeholder="First Name"
             />
             <input
+              name="lastName"
+              onChange={handleChange}
               className="w-full p-2 border rounded-md text-sm"
               placeholder="Last Name"
             />
@@ -124,6 +164,8 @@ export default function Register() {
 
           {/* Email */}
           <input
+            name="email"
+            onChange={handleChange}
             className="w-full p-2 border rounded-md text-sm mb-4"
             placeholder="Email Address"
           />
@@ -132,11 +174,15 @@ export default function Register() {
           <div className="flex gap-3 mb-4">
             <input
               type="password"
+              name="password"
+              onChange={handleChange}
               className="w-full p-2 border rounded-md text-sm"
               placeholder="Password"
             />
             <input
               type="password"
+              name="confirm password"
+              onChange={handleChange}
               className="w-full p-2 border rounded-md text-sm"
               placeholder="Confirm Password"
             />
@@ -157,7 +203,7 @@ export default function Register() {
 
           {/* Submit */}
           <button
-          onClick={() => navigate("/Profile")}
+          onClick={handleSubmit}
           className="w-full py-3 bg-blue-600 text-white rounded-md font-medium">
             Create Account
           </button>
