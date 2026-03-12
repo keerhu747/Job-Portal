@@ -1,13 +1,15 @@
-
 import express from "express";
 import cors from "cors";
 import sequelize from "./src/config/db.js";
 import bcrypt from "bcrypt";
+
 import authRoutes from "./src/routes/authRoutes.js";
 import jobRoutes from "./src/routes/jobRoutes.js";
 import employerRoutes from "./src/routes/employerRoutes.js";
 import adminRoutes from "./src/routes/adminRoutes.js";
 import profileRoutes from "./src/routes/userprofileRoutes.js";
+import adminloginRoutes from "./src/routes/adminloginroutes.js";
+import Admin from "./src/models/adminloginmodel.js";
 
 
 
@@ -21,15 +23,12 @@ import "./src/models/userProfileModel.js";
 
 
 
+
 const app = express();
 
 // middleware
 app.use(cors()); 
 // ✅ enable CORS
-app.use(cors({
-  origin: "http://localhost:5173"
-}));
-
 app.use(express.json());
 
 // routes
@@ -37,13 +36,12 @@ app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/employer", employerRoutes);
 app.use("/api/admin",adminRoutes);
+app.use("/api/profile", profileRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/admin", adminloginRoutes);
 
 
 // database connection
-sequelize.sync({ alter : true})
-.then(() => {
-app.use("/api/profile", profileRoutes);
-app.use("/api/admin", adminRoutes);
 // database
 sequelize.sync()
 .then(async () => {
