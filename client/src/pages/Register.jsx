@@ -5,41 +5,6 @@ import axios from "axios";
 export default function Register() {
    const navigate = useNavigate();
    const [formData, setFormData] = useState({
-<<<<<<< HEAD
-     firstName: "",
-     lastName: "",
-     email: "",
-     password: ""
-   });
-   const handleChange = (e) => {
-     setFormData({
-       ...formData,
-       [e.target.name]: e.target.value
-    });
-   };
-   const handleSubmit = async () => {
-     try {
-
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
-         formData
-      );
-
-      console.log(res.data);
-
-      alert("Account Created Successfully");
-
-      navigate("/Profile");
-
-     } catch (error) {
-
-       console.error(error);
-
-       alert("Registration Failed");
-
-     }
-   };
-=======
   firstName: "",
   lastName: "",
   email: "",
@@ -78,7 +43,6 @@ localStorage.setItem("userId", res.data.user.id);
     console.error("Registration failed", error);
   }
 };
->>>>>>> f80e8b0364ca4c3f9d5ed16ccb22f2d467091418
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex items-center justify-center px-4">
       {/* Card */}
@@ -110,20 +74,12 @@ localStorage.setItem("userId", res.data.user.id);
           <div className="flex gap-3 mb-4">
             <input
               name="firstName"
-<<<<<<< HEAD
-              onChange={handleChange}
-=======
->>>>>>> f80e8b0364ca4c3f9d5ed16ccb22f2d467091418
               className="w-full p-2 border rounded-md text-sm"
               onChange={handleChange}
               placeholder="First Name"
             />
             <input
               name="lastName"
-<<<<<<< HEAD
-              onChange={handleChange}
-=======
->>>>>>> f80e8b0364ca4c3f9d5ed16ccb22f2d467091418
               className="w-full p-2 border rounded-md text-sm"
               onChange={handleChange}
               placeholder="Last Name"
@@ -133,10 +89,6 @@ localStorage.setItem("userId", res.data.user.id);
           {/* Email */}
           <input
             name="email"
-<<<<<<< HEAD
-            onChange={handleChange}
-=======
->>>>>>> f80e8b0364ca4c3f9d5ed16ccb22f2d467091418
             className="w-full p-2 border rounded-md text-sm mb-4"
             onChange={handleChange}
             placeholder="Email Address"
@@ -147,22 +99,13 @@ localStorage.setItem("userId", res.data.user.id);
             <input
               type="password"
               name="password"
-<<<<<<< HEAD
-              onChange={handleChange}
-=======
->>>>>>> f80e8b0364ca4c3f9d5ed16ccb22f2d467091418
               className="w-full p-2 border rounded-md text-sm"
               onChange={handleChange}
               placeholder="Password"
             />
             <input
               type="password"
-<<<<<<< HEAD
-              name="confirm password"
-              onChange={handleChange}
-=======
                name="confirmPassword"
->>>>>>> f80e8b0364ca4c3f9d5ed16ccb22f2d467091418
               className="w-full p-2 border rounded-md text-sm"
               onChange={handleChange}
               placeholder="Confirm Password"
@@ -184,11 +127,7 @@ localStorage.setItem("userId", res.data.user.id);
 
           {/* Submit */}
           <button
-<<<<<<< HEAD
-          onClick={handleSubmit}
-=======
           type="submit"
->>>>>>> f80e8b0364ca4c3f9d5ed16ccb22f2d467091418
           className="w-full py-3 bg-blue-600 text-white rounded-md font-medium">
             Create Account
           </button>
