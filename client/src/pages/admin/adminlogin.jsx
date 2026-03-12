@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios" ;
+import { useEffect } from "react";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -17,30 +19,36 @@ const handleLogin = async (e) => {
     setError("Please enter email and password");
     return;
   }
-
   try {
-    const response = await fetch("http://localhost:5000/admin/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    const res = await axios.post(
+      "http://localhost:5000/api/admin/login",
+      {
+        email,
+        password
+      }
+    );
+    if (res.data) {
 
-    const data = await response.json();
-    console.log("Response:", data);
-if (!response.ok) {
-  setError(data.message);
-} else {
-  setError("");
-  navigate("/admindashboard");
-}
+      alert("Login successful");
+      localStorage.setItem("admin", JSON.stringify(res.data.admin));
+      navigate("/admindashboard");
+
+    }
 
   } catch (error) {
-    console.log(error);
-    setError("Server error. Try again.");
+
+    alert("Invalid credentials");
+
   }
 };
+ 
+ useEffect(() => {
+
+    if (!localStorage.getItem("admin")) {
+      navigate("/adminlogin");
+    }
+
+  }, []);
 
 
   return (

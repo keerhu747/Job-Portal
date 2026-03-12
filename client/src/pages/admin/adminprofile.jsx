@@ -4,6 +4,7 @@ import AdminLayout from "../../components/adminlayout";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminProfile() {
+  const navigate = useNavigate();
   const [systemAlerts, setSystemAlerts] = useState(true);
   const [userReports, setUserReports] = useState(true);
   const [maintenance, setMaintenance] = useState(false);
@@ -33,7 +34,11 @@ export default function AdminProfile() {
               </p>
             </div>
           </div>
-          <button className="text-blue-600 text-sm">Log out</button>
+          <button 
+          onClick={() => navigate("/adminlogin")}
+          className="text-blue-600 text-sm">
+            Log out
+            </button>
         </div>
 
         <div className="grid grid-cols-3 gap-6">

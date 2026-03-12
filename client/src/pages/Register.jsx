@@ -1,88 +1,48 @@
-/*export default function Register() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f4f6fb]">
-      <div className="w-[420px] bg-white p-8 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.1)]">
-
-        <h2 className="text-center text-2xl font-semibold mb-1">
-          Create Account
-        </h2>
-        <p className="text-center text-gray-500 mb-5">
-        Join Talentpoint to unlock new opportunities
-        </p>
-
-        <div className="flex mb-5">
-          <button className="flex-1 py-2 border bg-blue-600 text-white">
-            Student
-          </button>
-          <button className="flex-1 py-2 border bg-gray-100">
-            Employer
-          </button>
-        </div>
-
-        <div className="flex gap-2">
-          <input className="w-full p-2 border rounded-md mb-3" placeholder="First Name" />
-          <input className="w-full p-2 border rounded-md mb-3" placeholder="Last Name" />
-        </div>
-
-        <input className="w-full p-2 border rounded-md mb-3" placeholder="Email" />
-         <div className="flex gap-2">
-          <input type= "password" className="w-full p-2 border rounded-md mb-3" placeholder="password" />
-          <input type= "password" className="w-full p-2 border rounded-md mb-3" placeholder="confirm password" />
-        </div>
-
-        <p className="text-sm mb-3">
-          <input type="checkbox" className="mr-2" /> I agree to the Terms of Service and Privacy Policy
-        </p>
-
-        <button className="w-full py-3 bg-blue-600 text-white rounded-lg mt-3">
-          Create Account
-        </button>
-
-        <p className="text-center mt-4">
-          Already have an account?
-          <span className="text-blue-600 cursor-pointer ml-1">Login</span>
-        </p>
-
-        {}
-<div className="flex items-center my-6">
-  <div className="flex-1 h-px bg-gray-300"></div>
-  <span className="px-3 text-sm text-gray-500">Or sign up with</span>
-  <div className="flex-1 h-px bg-gray-300"></div>
-</div>
-
-{}
-<div className="flex gap-4">
-  <button className="flex items-center justify-center gap-2 w-full border border-gray-300 rounded-lg py-2 hover:bg-gray-50">
-    <img
-      src="https://www.svgrepo.com/show/475656/google-color.svg"
-      alt="Google"
-      className="w-5 h-5"
-    />
-    <span className="text-sm font-medium text-gray-700">Google</span>
-  </button>
-
-  <button className="flex items-center justify-center gap-2 w-full border border-gray-300 rounded-lg py-2 hover:bg-gray-50">
-    <img
-      src="https://www.svgrepo.com/show/475661/linkedin-color.svg"
-      alt="LinkedIn"
-      className="w-5 h-5"
-    />
-    <span className="text-sm font-medium text-gray-700">LinkedIn</span>
-  </button>
-</div>
-
-
-        
-      </div>
-    </div>
-    
-  );
-}
-*/
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 export default function Register() {
    const navigate = useNavigate();
+   const [formData, setFormData] = useState({
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: ""
+});
+const handleChange = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value
+  });
+};
+const handleRegister = async (e) => {
+  e.preventDefault();   // important
+
+  console.log("Button clicked");
+  console.log(formData);
+
+  if (formData.password !== formData.confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  try {
+    const res = await axios.post(
+  "http://localhost:5000/api/auth/register",
+  formData
+);
+
+console.log(res.data);
+localStorage.setItem("userId", res.data.user.id);
+
+    navigate("/Profile");
+
+  } catch (error) {
+    console.error("Registration failed", error);
+  }
+};
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex items-center justify-center px-4">
       {/* Card */}
@@ -110,21 +70,27 @@ export default function Register() {
             </button>
           </div>
 
-          {/* Name */}
+        <form onSubmit={handleRegister}>  {/* Name */}
           <div className="flex gap-3 mb-4">
             <input
+              name="firstName"
               className="w-full p-2 border rounded-md text-sm"
+              onChange={handleChange}
               placeholder="First Name"
             />
             <input
+              name="lastName"
               className="w-full p-2 border rounded-md text-sm"
+              onChange={handleChange}
               placeholder="Last Name"
             />
           </div>
 
           {/* Email */}
           <input
+            name="email"
             className="w-full p-2 border rounded-md text-sm mb-4"
+            onChange={handleChange}
             placeholder="Email Address"
           />
 
@@ -132,12 +98,16 @@ export default function Register() {
           <div className="flex gap-3 mb-4">
             <input
               type="password"
+              name="password"
               className="w-full p-2 border rounded-md text-sm"
+              onChange={handleChange}
               placeholder="Password"
             />
             <input
               type="password"
+               name="confirmPassword"
               className="w-full p-2 border rounded-md text-sm"
+              onChange={handleChange}
               placeholder="Confirm Password"
             />
           </div>
@@ -157,10 +127,11 @@ export default function Register() {
 
           {/* Submit */}
           <button
-          onClick={() => navigate("/Profile")}
+          type="submit"
           className="w-full py-3 bg-blue-600 text-white rounded-md font-medium">
             Create Account
           </button>
+      </form>
 
           {/* Login */}
           <p className="text-center text-sm mt-4">

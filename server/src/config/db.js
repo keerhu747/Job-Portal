@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 
 
 const sequelize = new Sequelize(
-  "job-portal",
+  "jobportal",
   "root",
   "",
   {

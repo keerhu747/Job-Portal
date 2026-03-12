@@ -4,7 +4,27 @@ import { useNavigate } from "react-router-dom";
 export default function Profile() {
   const navigate = useNavigate();
   const [step] = useState(1);
-  
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    location: "",
+    profileemail: "",
+    phoneNumber: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleNext = () => {
+    localStorage.setItem("profile1", JSON.stringify(formData));
+    navigate("/Profile2");
+  };
 
   return (
     <div className="min-h-screen bg-[#f4f6fb] flex justify-center py-10">
@@ -51,21 +71,30 @@ export default function Profile() {
               <label className="block text-sm font-medium text-black mb-2">
                 First Name <span className="text-red-500">*</span>
               </label>
-              <input className="w-full border border-gray-200 rounded-md p-1" placeholder="Jane" />
+              <input 
+              name="firstName"
+              onChange={handleChange}
+              className="w-full border border-gray-200 rounded-md p-1" placeholder="Jane" />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-black mb-2">
                 Last Name
               </label>
-              <input className="w-full border border-gray-200 rounded-md p-1" placeholder="Doe" />
+              <input
+              name="lastName"
+              onChange={handleChange}
+              className="w-full border border-gray-200 rounded-md p-1" placeholder="Doe" />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-black mb-2">
                 Location
               </label>
-              <input className="w-full border border-gray-200 rounded-md p-1" placeholder="Enter the location" />
+              <input 
+              name="location"
+              onChange={handleChange}
+              className="w-full border border-gray-200 rounded-md p-1" placeholder="Enter the location" />
             </div>
           </div>
 
@@ -75,21 +104,30 @@ export default function Profile() {
               <label className="block text-sm font-medium text-black mb-2">
                 Email Address <span className="text-red-500">*</span>
               </label>
-              <input className="w-full border border-gray-200 rounded-md p-1" placeholder="john@gmail.com" />
+              <input 
+              name="profileemail"
+              onChange={handleChange}
+              className="w-full border border-gray-200 rounded-md p-1" placeholder="john@gmail.com" />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-black mb-2">
                 Phone Number <span className="text-red-500">*</span>
               </label>
-              <input className="w-full border border-gray-200 rounded-md p-1" placeholder="9876543210" />
+              <input 
+              name="phoneNumber"
+              onChange={handleChange}
+              className="w-full border border-gray-200 rounded-md p-1" placeholder="9876543210" />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-black mb-2">
                 Enter Password <span className="text-red-500">*</span>
               </label>
-              <input type="password" className="w-full border border-gray-200 rounded-md p-1" />
+              <input 
+              onChange={handleChange}
+              name="password"
+              type="password" className="w-full border border-gray-200 rounded-md p-1" />
             </div>
           </div>
 
@@ -99,7 +137,10 @@ export default function Profile() {
               <label className="block text-sm font-medium text-black mb-2">
                 Confirm Password <span className="text-red-500">*</span>
               </label>
-              <input type="password" className="w-full border border-gray-200 rounded-md p-1" />
+              <input 
+              onChange={handleChange}
+              name="password"
+              type="password" className="w-full border border-gray-200 rounded-md p-1" />
             </div>
           </div>
 
@@ -130,8 +171,8 @@ export default function Profile() {
             </button>
 
             <button
-              type="button" 
-              onClick={() => navigate("/Profile2")}
+            type="button"
+            onClick={handleNext}
               className="px-8 py-2 bg-blue-600 text-white rounded-md"
             >
               Continue

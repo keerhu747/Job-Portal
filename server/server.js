@@ -82,23 +82,61 @@ app.post("/admin/login", (req, res) => {
 // 🚀 START SERVER
 // ==============================
 import express from "express";
+import cors from "cors";
 import sequelize from "./src/config/db.js";
+import bcrypt from "bcrypt";
 import authRoutes from "./src/routes/authRoutes.js";
+import profileRoutes from "./src/routes/userprofileRoutes.js";
+import adminRoutes from "./src/routes/adminroutes.js";
+
+
 
 import "./src/models/userModel.js";
+import "./src/models/userProfileModel.js";
+import Admin from "./src/models/adminmodel.js";
+
 
 const app = express();
 
+// ✅ enable CORS
+app.use(cors({
+  origin: "http://localhost:5173"
+}));
+
 app.use(express.json());
 
+// routes
 app.use("/api/auth", authRoutes);
-
+app.use("/api/profile", profileRoutes);
+app.use("/api/admin", adminRoutes);
+// database
 sequelize.sync()
-.then(() => {
+.then(async () => {
   console.log("Database connected & tables created");
+
+  const existingAdmin = await Admin.findOne({
+    where: { email: "admin@gmail.com" }
+  });
+
+ if (!existingAdmin) {
+  const hashedPassword = await bcrypt.hash("admin123", 10);
+
+  await Admin.create({
+    email: "admin@gmail.com",
+    password: hashedPassword
+  });
+
+  console.log("Admin created");
+}   else {
+
+    console.log("Admin already exists");
+
+  }
 })
+
 .catch(err => console.log(err));
 
+// server
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
