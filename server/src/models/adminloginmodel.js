@@ -13,7 +13,7 @@ const Admin = sequelize.define("Admin", {
   }
 },
 {
-    tableName: "admins"
+    tableName: "adminlogin"
   }
 );
 
